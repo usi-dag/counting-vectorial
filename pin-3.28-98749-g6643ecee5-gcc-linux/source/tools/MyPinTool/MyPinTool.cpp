@@ -28,36 +28,24 @@ bool useSocket; // Boolean set through command line argument -s 1 or -s 0
 KNOB<BOOL> KnobUseSocket(KNOB_MODE_WRITEONCE, "pintool",
     "s", "false", "Enable or disable the socket functionality");
 
+unordered_map<string, atomic<UINT64>> instructionsCounters;
 
-const int instructionsIndexSize = 19; // (there are 19 of these and this number won't change in the future, can't do instructionsIndex.size() because it's not const)
 
-// mnemonics for instructions where the LOCK prefix may be used
-// and for XCHG, where the LOCK prefix is implicit
-const unordered_map<string, int> instructionsIndex = {
-    {"ADC_LOCK", 0},
-    {"ADD_LOCK", 1},
-    {"AND_LOCK", 2},
-    {"BTC_LOCK", 3},
-    {"BTR_LOCK", 4},
-    {"BTS_LOCK", 5},
-    {"CMPXCHG_LOCK", 6},
-    {"CMPXCH8B_LOCK", 7},
-    {"CMPXCHG16B_LOCK", 8},
-    {"DEC_LOCK", 9},
-    {"INC_LOCK", 10},
-    {"NEG_LOCK", 11},
-    {"NOT_LOCK", 12},
-    {"OR_LOCK", 13},
-    {"SBB_LOCK", 14},
-    {"SUB_LOCK", 15},
-    {"XOR_LOCK", 16},
-    {"XADD_LOCK", 17},
-    {"XCHG", 18}
-};
+void initMap() {
+    std::ifstream inputFile("vectorialInstructions.txt");
+    std::vector<std::string> lines;
+    std::string line;
 
-// Keeps track of each instruction counter
-// Check instructionsIndex for which instruction is at which index
-atomic<UINT64> instructionsCounters[instructionsIndexSize];
+    if (inputFile.is_open()) {
+        while (getline(inputFile, line)) {
+            instructionsCounters[line] = 0;
+        }
+        inputFile.close();
+    } else {
+        std::cerr << "Unable to open vectorialInstructions.txt" << std::endl;
+        return; // Exit with an error code
+    }
+}
 
 void incrementInstructionCount(atomic<UINT64> *counter) {
     counter->fetch_add(1);
@@ -209,6 +197,8 @@ int main(int argc, char *argv[]) {
     // Initialize Pin
     if (PIN_Init(argc, argv)) // Returns true if command line arguments are wrong ==> Calls Usage() and describes what this tools is
         return Usage();
+
+    initMap();
 
     useSocket = KnobUseSocket.Value();
 
