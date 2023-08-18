@@ -1,0 +1,4 @@
+package jvbench.streamcluster.jmh_generated;
+public class StreamclusterPatternBenchmark_ReductionState_jmhType extends StreamclusterPatternBenchmark_ReductionState_jmhType_B3 {
+}
+

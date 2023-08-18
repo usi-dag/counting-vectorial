@@ -1,0 +1,4 @@
+package jvbench.particlefilter.jmh_generated;
+public class ParticlefilterBenchmark_MyState_jmhType extends ParticlefilterBenchmark_MyState_jmhType_B3 {
+}
+
