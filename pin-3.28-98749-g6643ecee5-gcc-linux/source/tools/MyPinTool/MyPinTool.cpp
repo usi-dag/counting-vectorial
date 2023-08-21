@@ -56,8 +56,8 @@ void incrementInstructionCount(atomic<UINT64> *counter) {
 // Called once "afterOperationSetUp" is called by the Java Plugin
 void setUpNextIteration() {
     // Set all the atomic counters to 0
-    for (int i = 0; i < instructionsIndexSize; i++)
-        instructionsCounters[i] = 0;
+    for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
+        itr->second = 0;
 }
 
 // Called once "beforeOperationTearDown" is called by the Java Plugin
@@ -73,7 +73,11 @@ void finalizeIteration(string iterationNumber, string benchmark) {
             return;
         }
         // Create header
-        atomicCounters << "Iteration,ADC_LOCK,ADD_LOCK,AND_LOCK,BTC_LOCK,BTR_LOCK,BTS_LOCK,CMPXCHG_LOCK,CMPXCH8B_LOCK,CMPXCHG16B_LOCK,DEC_LOCK,INC_LOCK,NEG_LOCK,NOT_LOCK,OR_LOCK,SBB_LOCK,SUB_LOCK,XOR_LOCK,XADD_LOCK,XCHG" << endl;
+        atomicCounters << "Iteration";
+        for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
+            atomicCounters << "," << itr->first;
+            
+        atomicCounters << endl;
     }
     
     ofstream atomicCounters(fileName, ios::app);
@@ -82,8 +86,8 @@ void finalizeIteration(string iterationNumber, string benchmark) {
         return;
     }
     atomicCounters << iterationNumber;
-    for (const atomic<UINT64>& count : instructionsCounters) 
-        atomicCounters << "," << count.load();
+    for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
+        atomicCounters << "," << itr->second.load();
 
     atomicCounters << endl;
     atomicCounters.close();
@@ -174,11 +178,11 @@ VOID initSocket(void *nothing) {
 // Called every time a new instruction is encountered
 VOID Instruction(INS ins, VOID *v) {
 
-    auto insPair = instructionsIndex.find(INS_Mnemonic(ins));    // returns iterator to this element, or end if not found
+    auto insPair = instructionsCounters.find(INS_Mnemonic(ins));    // returns iterator to this element, or end if not found
 
-    if (insPair != instructionsIndex.end()) {
+    if (insPair != instructionsCounters.end()) {
         
-        atomic<UINT64> *counter = &instructionsCounters[insPair->second];
+        atomic<UINT64> *counter = &(insPair->second);
 
         INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, counter, IARG_END);
 
