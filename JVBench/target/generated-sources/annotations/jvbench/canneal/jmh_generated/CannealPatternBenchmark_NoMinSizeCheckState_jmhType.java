@@ -1,0 +1,4 @@
+package jvbench.canneal.jmh_generated;
+public class CannealPatternBenchmark_NoMinSizeCheckState_jmhType extends CannealPatternBenchmark_NoMinSizeCheckState_jmhType_B3 {
+}
+
