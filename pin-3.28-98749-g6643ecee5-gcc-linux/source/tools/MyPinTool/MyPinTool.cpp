@@ -30,6 +30,8 @@ KNOB<BOOL> KnobUseSocket(KNOB_MODE_WRITEONCE, "pintool",
 
 unordered_map<string, atomic<UINT64>> instructionsCounters;
 
+atomic<UINT64> iterationNumber = 0;
+
 
 void initMap() {
     std::ifstream inputFile("vectorialInstructions.txt");
@@ -61,12 +63,13 @@ void setUpNextIteration() {
 }
 
 // Called once "beforeOperationTearDown" is called by the Java Plugin
-void finalizeIteration(string iterationNumber, string benchmark) {
+void finalizeIteration(string benchmark) {
 
     string fileName = "results/" + benchmark + "_instructionsCount.csv";
 
+    int itr = iterationNumber.load();
     // Initialize the output file
-    if (iterationNumber == "0") {
+    if (itr == 0) {
         ofstream atomicCounters(fileName);
         if (!atomicCounters) {
             cerr << "Unable to open file for writing!" << endl;
@@ -85,12 +88,14 @@ void finalizeIteration(string iterationNumber, string benchmark) {
         cerr << "Unable to open file for writing!" << endl;
         return;
     }
-    atomicCounters << iterationNumber;
+    atomicCounters << itr;
     for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
         atomicCounters << "," << itr->second.load();
 
     atomicCounters << endl;
     atomicCounters.close();
+
+    iterationNumber.fetch_add(1);
 }
 
 void handle_client(int client_socket) {
@@ -110,11 +115,7 @@ void handle_client(int client_socket) {
         // The buffer looks something like this A10 ~ fj-kmeans
         string strBuffer(buffer);
         string iterationMode = strBuffer.substr(0, 1);
-        string strIteration = strBuffer.substr(1);
-        int strIterationEndIdx = strIteration.find_first_not_of("0123456789");
-        int strBenchmarkStartIdx = strIteration.find("~");
-        string benchmark = strIteration.substr(strBenchmarkStartIdx + 2, strIteration.find_first_of("\n") - (strBenchmarkStartIdx + 2));
-        strIteration = strIteration.substr(0, strIterationEndIdx);
+        string benchmark = strBuffer.substr(4);
 
         // Call the corresponding method depending if we are at the start of end of an iteration
         string response;
@@ -122,7 +123,7 @@ void handle_client(int client_socket) {
             setUpNextIteration();
             response = "Next iteration has been setup\n";
         } else if (iterationMode == "B") {
-            finalizeIteration(strIteration, benchmark);
+            finalizeIteration(benchmark);
             response = "Iteration has been finalized\n";
         } else {
             cerr << "Server (Pintool) could not recognize the type state of the current iteration." << endl
@@ -139,6 +140,7 @@ void handle_client(int client_socket) {
 // Function signature required to be like this to use Pin's Thread API function
 // Initializes the socket and starts listening for incoming messages
 VOID initSocket(void *nothing) {
+    cout << "Initializing Socket" << endl;
     int server_fd, client_socket;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
@@ -165,12 +167,14 @@ VOID initSocket(void *nothing) {
         return;
     }
 
-    if ((client_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)) < 0) {
-        cerr << "Accept failed" << endl;
-        return;
-    }
+    while(true) {
+        if ((client_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)) < 0) {
+            cerr << "Accept failed" << endl;
+            return;
+        }
 
-    handle_client(client_socket);
+        handle_client(client_socket);
+    }
 
     close(server_fd);
 }

@@ -4,8 +4,6 @@ import jdk.incubator.vector.*;
 
 import java.io.*;
 
-import JVBench.src.main.java.jvbench.base.Base;
-
 public class Blackscholes {
 
     static private final VectorSpecies<Float> SPECIES = FloatVector.SPECIES_MAX;

@@ -3,7 +3,13 @@ package jvbench.axpy;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class AxpyBenchmark {
 
@@ -11,12 +17,10 @@ public class AxpyBenchmark {
     public static class MyState {
 
         public int size;
-        public double [] dy;
-        public double [] dx;
+        public double[] dy;
+        public double[] dx;
 
-        public double [] dyCopy;
-
-
+        public double[] dyCopy;
 
         @Setup(Level.Trial)
         public void setup() {
@@ -40,17 +44,98 @@ public class AxpyBenchmark {
 
         }
 
+    }
+
+    @State(Scope.Benchmark)
+    public static class SocketPlugin {
+        String serverName = "127.0.0.1"; // localhost
+        int port = 1234;
+
+        Socket clientSocket;
+        PrintWriter out;
+        BufferedReader in;
+
+        String path;
+        String benchmarkName;
+
+        public static final String ANSI_RESET = "\u001B[0m";
+        public static final String ANSI_RED = "\u001B[31m";
+
+        public SocketPlugin() {
+
+            System.out.println(ANSI_RED + "SocketPlugin constructor called" + ANSI_RESET);
+
+            try {
+                clientSocket = new Socket(serverName, port);
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath()="+this.getClass().toString());
 
 
+        }
+
+        // This function is called before a benchmark iteration starts
+        @Setup(Level.Iteration)
+        public void afterOperationSetUp() {
+
+            System.out.println(ANSI_RED + "afterOperationSetUp" + ANSI_RESET);
+
+            // SOCKET
+            try {
+
+                out.println("A" + " ~ " + benchmarkName); // Let the tool know which method is communicating and
+                                                          // the iteration number
+
+                // To make sure we do not continue before the file has been created
+                // System.out.println("Waiting for server's response");
+                String response = in.readLine();
+                // System.out.println("Server response: " + response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // System.out.println(ANSI_RED + "afterOperationSetUp: " + benchmark + " " +
+            // opIndex + " " + isLastOp + ANSI_RESET);
+
+        }
+
+        // This function is called once the benchmark iteration is over
+        @TearDown(Level.Iteration)
+        public void beforeOperationTearDown() {
+
+            System.out.println(ANSI_RED + "beforeOperationTearDown" + ANSI_RESET);
+
+            // SOCKET
+            try {
+
+                out.println("B" + " ~ " + benchmarkName); // Let the tool know which method is communicating and
+                                                          // the iteration number
+
+                // To make sure we do not continue before the file has been created
+                // System.out.println("Waiting for server's response");
+                String response = in.readLine();
+                // System.out.println("Server response: " + response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // System.out.println(ANSI_RED + "beforeOperationTearDown: " + benchmark + " " +
+            // opIndex + " " + durationNanos + ANSI_RESET);
+
+        }
     }
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
     @BenchmarkMode(Mode.SingleShotTime)
-    @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
+    @Fork(value = 5, jvmArgsAppend = { "-XX:-UseSuperWord" })
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void serial(MyState state, Blackhole blackhole) {
+    public void serial(MyState state, Blackhole blackhole, SocketPlugin socket) {
         Axpy.scalar(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);
@@ -62,32 +147,30 @@ public class AxpyBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void autoVec(MyState state, Blackhole blackhole) {
+    public void autoVec(MyState state, Blackhole blackhole, SocketPlugin socket) {
         Axpy.scalar(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);
     }
 
-
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
     @BenchmarkMode(Mode.SingleShotTime)
-    @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
+    @Fork(value = 5, jvmArgsAppend = { "-XX:-UseSuperWord" })
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void explicitVec(MyState state, Blackhole blackhole) {
+    public void explicitVec(MyState state, Blackhole blackhole, SocketPlugin socket) {
         Axpy.vector(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);
     }
 
-
     @Benchmark
     @BenchmarkMode(Mode.SingleShotTime)
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fullVec(MyState state, Blackhole blackhole) {
+    public void fullVec(MyState state, Blackhole blackhole, SocketPlugin socket) {
         Axpy.vector(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);
