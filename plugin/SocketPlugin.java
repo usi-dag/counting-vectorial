@@ -1,9 +1,15 @@
-package jvbench;
+// Compile and create jar
+// On PC:
+// javac -cp "/home/thomas/Documents/counting-vectorial/plugin:/home/thomas/Documents/counting-vectorial/JVBench/src/main/java" /home/thomas/Documents/counting-vectorial/plugin/SocketPlugin.java && jar cf SocketPlugin.jar SocketPlugin.class
+package plugin;
 
-import org.openjdk.jmh.annotations.State;
+import jvbench.Plugin;
 
-@State(Scope.Benchmark)
-public static class SocketPlugin implements Plugin {
+// Sockets
+import java.io.*;
+import java.net.*;
+
+public class SocketPlugin implements Plugin {
         String serverName = "127.0.0.1"; // localhost
         int port = 1234;
 
@@ -34,10 +40,9 @@ public static class SocketPlugin implements Plugin {
         }
 
         // This function is called before a benchmark iteration starts
-        @Setup(Level.Iteration)
-        public void afterOperationSetUp() {
+        public void beforeIterationSetup(int iteration) {
 
-            System.out.println(ANSI_RED + "afterOperationSetUp" + ANSI_RESET);
+            System.out.println(ANSI_RED + "beforeIterationSetup" + ANSI_RESET);
 
             // SOCKET
             try {
@@ -53,16 +58,15 @@ public static class SocketPlugin implements Plugin {
                 e.printStackTrace();
             }
 
-            // System.out.println(ANSI_RED + "afterOperationSetUp: " + benchmark + " " +
+            // System.out.println(ANSI_RED + "beforeIterationSetup: " + benchmark + " " +
             // opIndex + " " + isLastOp + ANSI_RESET);
 
         }
 
         // This function is called once the benchmark iteration is over
-        @TearDown(Level.Iteration)
-        public void beforeOperationTearDown() {
+        public void afterIterationTearDown(int iteration) {
 
-            System.out.println(ANSI_RED + "beforeOperationTearDown" + ANSI_RESET);
+            System.out.println(ANSI_RED + "afterIterationTearDown" + ANSI_RESET);
 
             // SOCKET
             try {
@@ -78,7 +82,7 @@ public static class SocketPlugin implements Plugin {
                 e.printStackTrace();
             }
 
-            // System.out.println(ANSI_RED + "beforeOperationTearDown: " + benchmark + " " +
+            // System.out.println(ANSI_RED + "afterIterationTearDown: " + benchmark + " " +
             // opIndex + " " + durationNanos + ANSI_RESET);
 
         }

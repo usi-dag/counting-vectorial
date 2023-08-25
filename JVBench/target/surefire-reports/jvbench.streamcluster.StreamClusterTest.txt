@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: jvbench.streamcluster.StreamClusterTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.025 s - in jvbench.streamcluster.StreamClusterTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.089 s - in jvbench.streamcluster.StreamClusterTest

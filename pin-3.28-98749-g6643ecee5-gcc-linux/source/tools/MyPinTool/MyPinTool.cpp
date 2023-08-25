@@ -174,6 +174,7 @@ VOID initSocket(void *nothing) {
         }
 
         handle_client(client_socket);
+
     }
 
     close(server_fd);

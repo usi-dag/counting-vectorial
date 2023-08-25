@@ -34,7 +34,6 @@ import org.openjdk.jmh.runner.FailureAssistException;
 
 import jvbench.axpy.jmh_generated.AxpyPatternBenchmark_jmhType;
 import jvbench.axpy.jmh_generated.AxpyPatternBenchmark_MyState_jmhType;
-import jvbench.axpy.jmh_generated.AxpyPatternBenchmark_SocketPlugin_jmhType;
 public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
 
     byte p000, p001, p002, p003, p004, p005, p006, p007, p008, p009, p010, p011, p012, p013, p014, p015;
@@ -71,44 +70,24 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0 = _jmh_tryInit_f_axpypatternbenchmark0_0(control);
-            AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G = _jmh_tryInit_f_socketplugin2_G(control);
             AxpyPatternBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.afterOperationSetUp();
-                        l_socketplugin2_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            fmaScalar_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_socketplugin2_G, l_axpypatternbenchmark0_0);
+            fmaScalar_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_axpypatternbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+                    l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
                     res.allOps++;
                 }
             } catch (Throwable e) {
@@ -116,30 +95,8 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             }
             control.preTearDown();
             l_mystate1_1.reset();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.beforeOperationTearDown();
-                        l_socketplugin2_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
             if (control.isLastIteration()) {
-                synchronized(this.getClass()) {
-                    f_socketplugin2_G = null;
-                }
                 f_mystate1_1 = null;
                 f_axpypatternbenchmark0_0 = null;
             }
@@ -158,12 +115,12 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fmaScalar_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
+    public static void fmaScalar_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+            l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -183,44 +140,24 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0 = _jmh_tryInit_f_axpypatternbenchmark0_0(control);
-            AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G = _jmh_tryInit_f_socketplugin2_G(control);
             AxpyPatternBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.afterOperationSetUp();
-                        l_socketplugin2_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            fmaScalar_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_socketplugin2_G, l_axpypatternbenchmark0_0);
+            fmaScalar_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_axpypatternbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+                    l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
                     res.allOps++;
                 }
             } catch (Throwable e) {
@@ -228,30 +165,8 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             }
             control.preTearDown();
             l_mystate1_1.reset();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.beforeOperationTearDown();
-                        l_socketplugin2_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
             if (control.isLastIteration()) {
-                synchronized(this.getClass()) {
-                    f_socketplugin2_G = null;
-                }
                 f_mystate1_1 = null;
                 f_axpypatternbenchmark0_0 = null;
             }
@@ -270,12 +185,12 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fmaScalar_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
+    public static void fmaScalar_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+            l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -295,34 +210,14 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0 = _jmh_tryInit_f_axpypatternbenchmark0_0(control);
-            AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G = _jmh_tryInit_f_socketplugin2_G(control);
             AxpyPatternBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.afterOperationSetUp();
-                        l_socketplugin2_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
                 res.allOps++;
             }
 
@@ -331,12 +226,12 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             int batchSize = iterationParams.getBatchSize();
             int opsPerInv = benchmarkParams.getOpsPerInvocation();
             SampleBuffer buffer = new SampleBuffer();
-            fmaScalar_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_mystate1_1, l_socketplugin2_G, l_axpypatternbenchmark0_0);
+            fmaScalar_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_mystate1_1, l_axpypatternbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+                    l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
                     res.allOps++;
                 }
             } catch (Throwable e) {
@@ -344,30 +239,8 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             }
             control.preTearDown();
             l_mystate1_1.reset();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.beforeOperationTearDown();
-                        l_socketplugin2_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
             if (control.isLastIteration()) {
-                synchronized(this.getClass()) {
-                    f_socketplugin2_G = null;
-                }
                 f_mystate1_1 = null;
                 f_axpypatternbenchmark0_0 = null;
             }
@@ -383,7 +256,7 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fmaScalar_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
+    public static void fmaScalar_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
         long realTime = 0;
         long operations = 0;
         int rnd = (int)System.nanoTime();
@@ -398,7 +271,7 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             }
             for (int b = 0; b < batchSize; b++) {
                 if (control.volatileSpoiler) return;
-                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+                l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
             }
             if (sample) {
                 buffer.add((System.nanoTime() - time) / opsPerInv);
@@ -426,61 +299,19 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
         }
         if (threadParams.getSubgroupIndex() == 0) {
             AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0 = _jmh_tryInit_f_axpypatternbenchmark0_0(control);
-            AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G = _jmh_tryInit_f_socketplugin2_G(control);
             AxpyPatternBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.afterOperationSetUp();
-                        l_socketplugin2_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.setupIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             notifyControl.startMeasurement = true;
             RawResults res = new RawResults();
             int batchSize = iterationParams.getBatchSize();
-            fmaScalar_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_mystate1_1, l_socketplugin2_G, l_axpypatternbenchmark0_0);
+            fmaScalar_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_mystate1_1, l_axpypatternbenchmark0_0);
             control.preTearDown();
             l_mystate1_1.reset();
-            if (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.compareAndSet(l_socketplugin2_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_socketplugin2_G.readyIteration) {
-                        l_socketplugin2_G.beforeOperationTearDown();
-                        l_socketplugin2_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.set(l_socketplugin2_G, 0);
-                }
-            } else {
-                while (AxpyPatternBenchmark_SocketPlugin_jmhType.tearIterationMutexUpdater.get(l_socketplugin2_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
             if (control.isLastIteration()) {
-                synchronized(this.getClass()) {
-                    f_socketplugin2_G = null;
-                }
                 f_mystate1_1 = null;
                 f_axpypatternbenchmark0_0 = null;
             }
@@ -494,42 +325,17 @@ public final class AxpyPatternBenchmark_fmaScalar_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fmaScalar_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_SocketPlugin_jmhType l_socketplugin2_G, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
+    public static void fmaScalar_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, AxpyPatternBenchmark_MyState_jmhType l_mystate1_1, AxpyPatternBenchmark_jmhType l_axpypatternbenchmark0_0) throws Throwable {
         long realTime = 0;
         result.startTime = System.nanoTime();
         for (int b = 0; b < batchSize; b++) {
             if (control.volatileSpoiler) return;
-            l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole, l_socketplugin2_G);
+            l_axpypatternbenchmark0_0.fmaScalar(l_mystate1_1, blackhole);
         }
         result.stopTime = System.nanoTime();
         result.realTime = realTime;
     }
 
-    
-    static volatile AxpyPatternBenchmark_SocketPlugin_jmhType f_socketplugin2_G;
-    
-    AxpyPatternBenchmark_SocketPlugin_jmhType _jmh_tryInit_f_socketplugin2_G(InfraControl control) throws Throwable {
-        AxpyPatternBenchmark_SocketPlugin_jmhType val = f_socketplugin2_G;
-        if (val != null) {
-            return val;
-        }
-        synchronized(this.getClass()) {
-            try {
-            if (control.isFailing) throw new FailureAssistException();
-            val = f_socketplugin2_G;
-            if (val != null) {
-                return val;
-            }
-            val = new AxpyPatternBenchmark_SocketPlugin_jmhType();
-            val.readyTrial = true;
-            f_socketplugin2_G = val;
-            } catch (Throwable t) {
-                control.isFailing = true;
-                throw t;
-            }
-        }
-        return val;
-    }
     
     AxpyPatternBenchmark_jmhType f_axpypatternbenchmark0_0;
     

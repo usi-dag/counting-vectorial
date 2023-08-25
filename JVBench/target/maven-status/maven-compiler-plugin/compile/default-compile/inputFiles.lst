@@ -139,6 +139,7 @@
 /home/thomas/Documents/counting-vectorial/JVBench/src/main/java/jvbench/streamclusterReduction/StreamCluster.java
 /home/thomas/Documents/counting-vectorial/JVBench/src/main/java/jvbench/swaptionsConversion/CumNormalInv.java
 /home/thomas/Documents/counting-vectorial/JVBench/src/main/java/jvbench/lavaMDIndexInRange/BoxStr.java
+/home/thomas/Documents/counting-vectorial/JVBench/src/main/java/jvbench/JMHBenchmarkConfig.java
 /home/thomas/Documents/counting-vectorial/JVBench/src/main/java/jvbench/blackscholes/BlackscholesPatternBenchmark.java
 /home/thomas/Documents/counting-vectorial/JVBench/src/main/java/jvbench/streamclusterReduction/FileStream.java
 /home/thomas/Documents/counting-vectorial/JVBench/src/main/java/jvbench/canneal/CannealBenchmark.java
