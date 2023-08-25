@@ -3,3 +3,8 @@ dontinline,*.*_avgt_jmhStub
 dontinline,*.*_sample_jmhStub
 dontinline,*.*_ss_jmhStub
 dontinline,*.*_thrpt_jmhStub
+inline,jvbench/JMHBenchmarkConfig.afterIterationTearDown
+inline,jvbench/JMHBenchmarkConfig.beforeIterationSetup
+inline,jvbench/axpy/AxpyBenchmark$MyState.reset
+inline,jvbench/axpy/AxpyBenchmark$MyState.setup
+inline,jvbench/axpy/AxpyBenchmark.autoVec
