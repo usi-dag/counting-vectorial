@@ -1,5 +1,6 @@
 package jvbench.blackscholes;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.blackscholesMergeWihtoutBlend.Blackscholes;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
@@ -47,7 +48,7 @@ public class BlackscholesPatternBenchmark {
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
     // blend -> zero.add(mask).add(mask.not) with mask
-    public void mergeWithoutBlend(Blackhole blackhole, mergeWithoutBlendState myState) {
+    public void mergeWithoutBlend(Blackhole blackhole, mergeWithoutBlendState myState, JMHBenchmarkConfig plugins) {
         jvbench.blackscholesMergeWihtoutBlend.Blackscholes.vector();
         blackhole.consume(Blackscholes.getPrices());
     }
@@ -58,7 +59,7 @@ public class BlackscholesPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void pow(Blackhole blackhole, PowState myState) {
+    public void pow(Blackhole blackhole, PowState myState, JMHBenchmarkConfig plugins) {
         jvbench.blackscholesPow.Blackscholes.vector();
         blackhole.consume(jvbench.blackscholesPow.Blackscholes.getPrices());
     }
@@ -69,7 +70,7 @@ public class BlackscholesPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void indexInRange(Blackhole blackhole, IndexInRangeState myState) {
+    public void indexInRange(Blackhole blackhole, IndexInRangeState myState, JMHBenchmarkConfig plugins) {
         jvbench.blackscholesIndexInRange.Blackscholes.vector();
         blackhole.consume(jvbench.blackscholesIndexInRange.Blackscholes.getPrices());
     }

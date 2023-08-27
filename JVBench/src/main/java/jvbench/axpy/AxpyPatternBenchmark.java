@@ -3,6 +3,8 @@ package jvbench.axpy;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
+import jvbench.JMHBenchmarkConfig;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -48,7 +50,7 @@ public class AxpyPatternBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void fmaScalar(MyState state, Blackhole blackhole) {
+    public void fmaScalar(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Axpy.scalarFMA(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);
@@ -60,7 +62,7 @@ public class AxpyPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void indexInRange(MyState state, Blackhole blackhole) {
+    public void indexInRange(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Axpy.vectorIndexInRange(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);
@@ -72,7 +74,7 @@ public class AxpyPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void broadcastExternal(MyState state, Blackhole blackhole) {
+    public void broadcastExternal(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Axpy.vectorBroadcastExternal(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);
@@ -84,7 +86,7 @@ public class AxpyPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fma(MyState state, Blackhole blackhole) {
+    public void fma(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Axpy.vectorFMA(1.0, state.dx, state.dy, state.size);
         blackhole.consume(state.dx);
         blackhole.consume(state.dy);

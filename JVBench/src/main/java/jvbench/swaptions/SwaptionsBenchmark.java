@@ -1,5 +1,6 @@
 package jvbench.swaptions;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.swaptionsConversion.HJMSecuritiesImpl;
 import org.openjdk.jmh.annotations.*;
 
@@ -30,7 +31,7 @@ public class SwaptionsBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void serial(MyState state) {
+    public void serial(MyState state, JMHBenchmarkConfig plugins) {
         HJMSecuritiesImpl.benchmark(false);
     }
 
@@ -40,7 +41,7 @@ public class SwaptionsBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void autoVec(MyState state) {
+    public void autoVec(MyState state, JMHBenchmarkConfig plugins) {
         HJMSecuritiesImpl.benchmark(false);
     }
 
@@ -50,7 +51,7 @@ public class SwaptionsBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void explicitVec(MyState state) {
+    public void explicitVec(MyState state, JMHBenchmarkConfig plugins) {
         HJMSecuritiesImpl.benchmark(true);
     }
 
@@ -60,7 +61,7 @@ public class SwaptionsBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fullVec(MyState state) {
+    public void fullVec(MyState state, JMHBenchmarkConfig plugins) {
         HJMSecuritiesImpl.benchmark(true);
     }
 

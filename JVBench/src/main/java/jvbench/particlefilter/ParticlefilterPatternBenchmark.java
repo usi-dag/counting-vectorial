@@ -1,5 +1,6 @@
 package jvbench.particlefilter;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.particlefilterUpdateMaskInsideLoop.ParticleFilter;
 import org.openjdk.jmh.annotations.*;
 
@@ -264,7 +265,7 @@ public class ParticlefilterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void xorExtended(XorState state) { // xor extended
+    public void xorExtended(XorState state, JMHBenchmarkConfig plugins) { // xor extended
         jvbench.particlefilterXor.ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,
@@ -283,7 +284,7 @@ public class ParticlefilterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void mergeWithBlend(MergeWithBlendState state) {
+    public void mergeWithBlend(MergeWithBlendState state, JMHBenchmarkConfig plugins) {
         jvbench.particlefilterMergeWithBlend.ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,
@@ -302,7 +303,7 @@ public class ParticlefilterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void updateMaskInsideLoop(UpdateMaskInsideLoopState state) {
+    public void updateMaskInsideLoop(UpdateMaskInsideLoopState state, JMHBenchmarkConfig plugins) {
         ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,
@@ -321,7 +322,7 @@ public class ParticlefilterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void loadMaskInsideLoop(LoadMaskInsideLoopState state) {
+    public void loadMaskInsideLoop(LoadMaskInsideLoopState state, JMHBenchmarkConfig plugins) {
         jvbench.particlefilterLoadMaskInsideLoop.ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,
@@ -340,7 +341,7 @@ public class ParticlefilterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void indexInRange(IndexInRangeState state) {
+    public void indexInRange(IndexInRangeState state, JMHBenchmarkConfig plugins) {
         jvbench.particlefilterIndexInRange.ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,
@@ -359,7 +360,7 @@ public class ParticlefilterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void noSecondMask(NoSecondMaskState state) {
+    public void noSecondMask(NoSecondMaskState state, JMHBenchmarkConfig plugins) {
         jvbench.particlefilterNoSecondMask.ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,
@@ -378,7 +379,7 @@ public class ParticlefilterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void staticMask(StaticMaskState state) {
+    public void staticMask(StaticMaskState state, JMHBenchmarkConfig plugins) {
         jvbench.particlefilterStatic.ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,

@@ -1,5 +1,6 @@
 package jvbench.pathfinder;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.pathfinderConditionInsideLoop.PathFinder;
 import org.openjdk.jmh.annotations.*;
 
@@ -32,7 +33,7 @@ public class PathfinderPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void conditionInsideLoop(ConditionInsideLoopState state) {
+    public void conditionInsideLoop(ConditionInsideLoopState state, JMHBenchmarkConfig plugins) {
         PathFinder.vector();
     }
 
@@ -43,7 +44,7 @@ public class PathfinderPatternBenchmark {
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
     // split
-    public void indexInRange(IndexInRangeState state) {
+    public void indexInRange(IndexInRangeState state, JMHBenchmarkConfig plugins) {
         jvbench.pathfinderIndexInRange.PathFinder.vector();
     }
 }

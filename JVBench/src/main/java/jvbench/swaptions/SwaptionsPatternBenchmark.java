@@ -1,5 +1,6 @@
 package jvbench.swaptions;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.swaptionsIndexInRange.HJMSecuritiesImpl;
 import org.openjdk.jmh.annotations.*;
 
@@ -52,19 +53,19 @@ public class SwaptionsPatternBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void pow(PowState state) {
+    public void pow(PowState state, JMHBenchmarkConfig plugins) {
         jvbench.swaptionsPow.HJMSecuritiesImpl.benchmark(true);
     }
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void conversion(ConversionState state) {
+    public void conversion(ConversionState state, JMHBenchmarkConfig plugins) {
         jvbench.swaptionsConversion.HJMSecuritiesImpl.benchmark(true);
     }
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void indexInRange(IndexInRangeState state) {
+    public void indexInRange(IndexInRangeState state, JMHBenchmarkConfig plugins) {
         HJMSecuritiesImpl.benchmark(true);
     }
 

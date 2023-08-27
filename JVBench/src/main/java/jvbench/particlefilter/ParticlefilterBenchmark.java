@@ -2,6 +2,8 @@ package jvbench.particlefilter;
 
 import org.openjdk.jmh.annotations.*;
 
+import jvbench.JMHBenchmarkConfig;
+
 import java.util.concurrent.TimeUnit;
 
 import static jvbench.particlefilter.ParticleFilter.DOUBLE_SPECIES_LENGTH;
@@ -50,7 +52,7 @@ public class ParticlefilterBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void serial(MyState state) {
+    public void serial(MyState state, JMHBenchmarkConfig plugins) {
         ParticleFilter.particleFilter(
                 state.I,
                 state.IszX,
@@ -67,7 +69,7 @@ public class ParticlefilterBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void autoVec(MyState state) {
+    public void autoVec(MyState state, JMHBenchmarkConfig plugins) {
         ParticleFilter.particleFilter(
                 state.I,
                 state.IszX,
@@ -85,7 +87,7 @@ public class ParticlefilterBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void explicitVec(MyState state) {
+    public void explicitVec(MyState state, JMHBenchmarkConfig plugins) {
         ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,
@@ -104,7 +106,7 @@ public class ParticlefilterBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fullVec(MyState state) {
+    public void fullVec(MyState state, JMHBenchmarkConfig plugins) {
         ParticleFilter.particleFilterVector(
                 state.I,
                 state.IszX,

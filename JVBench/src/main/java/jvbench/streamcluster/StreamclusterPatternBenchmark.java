@@ -1,5 +1,6 @@
 package jvbench.streamcluster;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.streamclusterReduction.PStream;
 import jvbench.streamclusterReduction.StreamCluster;
 import org.openjdk.jmh.annotations.*;
@@ -74,7 +75,7 @@ public class StreamclusterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void reduction(ReductionState state) {
+    public void reduction(ReductionState state, JMHBenchmarkConfig plugins) {
         StreamCluster.streamCluster(state.stream, state.kMin, state.kMax, state.dim, state.chunkSize, state.clusterSize, state.outputFileName, true);
     }
 
@@ -84,7 +85,7 @@ public class StreamclusterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void pow(MyStatePow state) {
+    public void pow(MyStatePow state, JMHBenchmarkConfig plugins) {
         jvbench.streamclusterPow.StreamCluster.streamCluster(state.stream, state.kMin, state.kMax, state.dim, state.chunkSize, state.clusterSize, state.outputFileName, true);
     }
 
@@ -94,7 +95,7 @@ public class StreamclusterPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void indexInRange(IndexInRangeState state) {
+    public void indexInRange(IndexInRangeState state, JMHBenchmarkConfig plugins) {
         jvbench.streamclusterIndexInRange.StreamCluster.streamCluster(state.stream, state.kMin, state.kMax, state.dim, state.chunkSize, state.clusterSize, state.outputFileName, true);
     }
 }

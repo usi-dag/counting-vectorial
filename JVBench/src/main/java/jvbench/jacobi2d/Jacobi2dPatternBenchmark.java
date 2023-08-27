@@ -1,5 +1,6 @@
 package jvbench.jacobi2d;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.jacobi2dIndexInRange.Jacobi2d;
 import org.openjdk.jmh.annotations.*;
 
@@ -42,7 +43,7 @@ public class Jacobi2dPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void indexInRange(IndexInRangeState state) {
+    public void indexInRange(IndexInRangeState state, JMHBenchmarkConfig plugins) {
         Jacobi2d.vector(state.tSteps, state.size, state.a, state.b);
     }
 

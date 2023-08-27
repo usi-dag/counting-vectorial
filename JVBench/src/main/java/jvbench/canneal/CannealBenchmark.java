@@ -1,5 +1,6 @@
 package jvbench.canneal;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.cannealReduction.Canneal;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
@@ -36,7 +37,7 @@ public class CannealBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void serial(MyState state, Blackhole blackhole) {
+    public static void serial(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.scalar();
     }
 
@@ -46,7 +47,7 @@ public class CannealBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void autoVec(MyState state, Blackhole blackhole) {
+    public static void autoVec(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.scalar();
     }
 
@@ -56,7 +57,7 @@ public class CannealBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void explicitVec(MyState state, Blackhole blackhole) {
+    public static void explicitVec(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.vector();
     }
 
@@ -66,7 +67,7 @@ public class CannealBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void fullVec(MyState state, Blackhole blackhole) {
+    public static void fullVec(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.vector();
     }
 

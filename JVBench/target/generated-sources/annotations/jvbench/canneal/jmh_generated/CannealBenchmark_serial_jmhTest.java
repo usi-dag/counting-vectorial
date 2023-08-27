@@ -33,6 +33,7 @@ import org.openjdk.jmh.results.AggregationPolicy;
 import org.openjdk.jmh.runner.FailureAssistException;
 
 import jvbench.canneal.jmh_generated.CannealBenchmark_jmhType;
+import jvbench.jmh_generated.JMHBenchmarkConfig_jmhType;
 import jvbench.canneal.jmh_generated.CannealBenchmark_MyState_jmhType;
 public final class CannealBenchmark_serial_jmhTest {
 
@@ -70,32 +71,74 @@ public final class CannealBenchmark_serial_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             CannealBenchmark_jmhType l_cannealbenchmark0_0 = _jmh_tryInit_f_cannealbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             CannealBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            serial_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_cannealbenchmark0_0);
+            serial_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_cannealbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+                    l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                     res.allOps++;
                 }
             } catch (Throwable e) {
                 if (!(e instanceof InterruptedException)) throw e;
             }
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_cannealbenchmark0_0 = null;
             }
@@ -114,12 +157,12 @@ public final class CannealBenchmark_serial_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void serial_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, CannealBenchmark_MyState_jmhType l_mystate1_1, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
+    public static void serial_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, CannealBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+            l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -139,32 +182,74 @@ public final class CannealBenchmark_serial_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             CannealBenchmark_jmhType l_cannealbenchmark0_0 = _jmh_tryInit_f_cannealbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             CannealBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            serial_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_cannealbenchmark0_0);
+            serial_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_cannealbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+                    l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                     res.allOps++;
                 }
             } catch (Throwable e) {
                 if (!(e instanceof InterruptedException)) throw e;
             }
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_cannealbenchmark0_0 = null;
             }
@@ -183,12 +268,12 @@ public final class CannealBenchmark_serial_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void serial_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, CannealBenchmark_MyState_jmhType l_mystate1_1, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
+    public static void serial_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, CannealBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+            l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -208,14 +293,34 @@ public final class CannealBenchmark_serial_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             CannealBenchmark_jmhType l_cannealbenchmark0_0 = _jmh_tryInit_f_cannealbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             CannealBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                 res.allOps++;
             }
 
@@ -224,20 +329,42 @@ public final class CannealBenchmark_serial_jmhTest {
             int batchSize = iterationParams.getBatchSize();
             int opsPerInv = benchmarkParams.getOpsPerInvocation();
             SampleBuffer buffer = new SampleBuffer();
-            serial_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_mystate1_1, l_cannealbenchmark0_0);
+            serial_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_cannealbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+                    l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                     res.allOps++;
                 }
             } catch (Throwable e) {
                 if (!(e instanceof InterruptedException)) throw e;
             }
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_cannealbenchmark0_0 = null;
             }
@@ -253,7 +380,7 @@ public final class CannealBenchmark_serial_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void serial_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, CannealBenchmark_MyState_jmhType l_mystate1_1, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
+    public static void serial_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, CannealBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
         long realTime = 0;
         long operations = 0;
         int rnd = (int)System.nanoTime();
@@ -268,7 +395,7 @@ public final class CannealBenchmark_serial_jmhTest {
             }
             for (int b = 0; b < batchSize; b++) {
                 if (control.volatileSpoiler) return;
-                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+                l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
             }
             if (sample) {
                 buffer.add((System.nanoTime() - time) / opsPerInv);
@@ -296,18 +423,60 @@ public final class CannealBenchmark_serial_jmhTest {
         }
         if (threadParams.getSubgroupIndex() == 0) {
             CannealBenchmark_jmhType l_cannealbenchmark0_0 = _jmh_tryInit_f_cannealbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             CannealBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             notifyControl.startMeasurement = true;
             RawResults res = new RawResults();
             int batchSize = iterationParams.getBatchSize();
-            serial_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_mystate1_1, l_cannealbenchmark0_0);
+            serial_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_cannealbenchmark0_0);
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_cannealbenchmark0_0 = null;
             }
@@ -321,17 +490,42 @@ public final class CannealBenchmark_serial_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void serial_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, CannealBenchmark_MyState_jmhType l_mystate1_1, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
+    public static void serial_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, CannealBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, CannealBenchmark_jmhType l_cannealbenchmark0_0) throws Throwable {
         long realTime = 0;
         result.startTime = System.nanoTime();
         for (int b = 0; b < batchSize; b++) {
             if (control.volatileSpoiler) return;
-            l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole);
+            l_cannealbenchmark0_0.serial(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
         }
         result.stopTime = System.nanoTime();
         result.realTime = realTime;
     }
 
+    
+    static volatile JMHBenchmarkConfig_jmhType f_jmhbenchmarkconfig2_G;
+    
+    JMHBenchmarkConfig_jmhType _jmh_tryInit_f_jmhbenchmarkconfig2_G(InfraControl control) throws Throwable {
+        JMHBenchmarkConfig_jmhType val = f_jmhbenchmarkconfig2_G;
+        if (val != null) {
+            return val;
+        }
+        synchronized(this.getClass()) {
+            try {
+            if (control.isFailing) throw new FailureAssistException();
+            val = f_jmhbenchmarkconfig2_G;
+            if (val != null) {
+                return val;
+            }
+            val = new JMHBenchmarkConfig_jmhType();
+            val.readyTrial = true;
+            f_jmhbenchmarkconfig2_G = val;
+            } catch (Throwable t) {
+                control.isFailing = true;
+                throw t;
+            }
+        }
+        return val;
+    }
     
     CannealBenchmark_jmhType f_cannealbenchmark0_0;
     

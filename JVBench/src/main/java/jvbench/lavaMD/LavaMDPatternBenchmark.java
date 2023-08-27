@@ -1,5 +1,6 @@
 package jvbench.lavaMD;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.lavaMDFma.LavaMD;
 import org.openjdk.jmh.annotations.*;
 
@@ -51,7 +52,7 @@ public class LavaMDPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fma(FmaState state) {
+    public void fma(FmaState state, JMHBenchmarkConfig plugins) {
         LavaMD.vector();
     }
 
@@ -61,7 +62,7 @@ public class LavaMDPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fmaScalar(FmaState state) {
+    public void fmaScalar(FmaState state, JMHBenchmarkConfig plugins) {
         LavaMD.serial();
     }
 
@@ -71,7 +72,7 @@ public class LavaMDPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void reduction(ReductionState state) {
+    public void reduction(ReductionState state, JMHBenchmarkConfig plugins) {
         jvbench.lavaMDReduction.LavaMD.vector();
     }
 
@@ -81,7 +82,7 @@ public class LavaMDPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void indexInRange(IndexInRangeState state) {
+    public void indexInRange(IndexInRangeState state, JMHBenchmarkConfig plugins) {
         LavaMD.vector();
     }
 

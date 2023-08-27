@@ -2,6 +2,8 @@ package jvbench.lavaMD;
 
 import org.openjdk.jmh.annotations.*;
 
+import jvbench.JMHBenchmarkConfig;
+
 import java.util.concurrent.TimeUnit;
 
 public class LavaMDBenchmark {
@@ -26,7 +28,7 @@ public class LavaMDBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void serial(MyState state) {
+    public void serial(MyState state, JMHBenchmarkConfig plugins) {
         LavaMD.serial();
     }
 
@@ -36,7 +38,7 @@ public class LavaMDBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void autoVec(MyState state) {
+    public void autoVec(MyState state, JMHBenchmarkConfig plugins) {
         LavaMD.serial();
     }
 
@@ -46,7 +48,7 @@ public class LavaMDBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void explicitVec(MyState state) {
+    public void explicitVec(MyState state, JMHBenchmarkConfig plugins) {
         LavaMD.vector();
     }
 
@@ -56,7 +58,7 @@ public class LavaMDBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fullVec(MyState state) {
+    public void fullVec(MyState state, JMHBenchmarkConfig plugins) {
         LavaMD.vector();
     }
 }

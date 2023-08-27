@@ -1,5 +1,6 @@
 package jvbench.somier;
 
+import jvbench.JMHBenchmarkConfig;
 import jvbench.somierIndexInRange.Somier;
 import org.openjdk.jmh.annotations.*;
 
@@ -50,7 +51,7 @@ public class SomierPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fma(FmaState state) {
+    public void fma(FmaState state, JMHBenchmarkConfig plugins) {
         jvbench.somierFma.Somier.vector();
     }
 
@@ -61,7 +62,7 @@ public class SomierPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fmaScalar(FmaState state) {
+    public void fmaScalar(FmaState state, JMHBenchmarkConfig plugins) {
         jvbench.somierFma.Somier.scalar();
     }
 
@@ -72,7 +73,7 @@ public class SomierPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void pow(PowState state) {
+    public void pow(PowState state, JMHBenchmarkConfig plugins) {
         jvbench.somierPow.Somier.vector();
     }
 
@@ -83,7 +84,7 @@ public class SomierPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void indexInRange(IndexInRangeState state) {
+    public void indexInRange(IndexInRangeState state, JMHBenchmarkConfig plugins) {
         Somier.vector();
     }
 }

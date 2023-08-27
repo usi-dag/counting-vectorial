@@ -3,6 +3,8 @@ package jvbench.blackscholes;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
+import jvbench.JMHBenchmarkConfig;
+
 import java.util.concurrent.TimeUnit;
 
 public class BlackscholesBenchmark {
@@ -24,7 +26,7 @@ public class BlackscholesBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void serial(Blackhole blackhole, MyState myState) {
+    public void serial(Blackhole blackhole, MyState myState, JMHBenchmarkConfig plugins) {
         Blackscholes.scalar();
         blackhole.consume(Blackscholes.getPrices());
     }
@@ -35,7 +37,7 @@ public class BlackscholesBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void autoVec(Blackhole blackhole, MyState myState) {
+    public void autoVec(Blackhole blackhole, MyState myState, JMHBenchmarkConfig plugins) {
         Blackscholes.scalar();
         blackhole.consume(Blackscholes.getPrices());
     }
@@ -46,7 +48,7 @@ public class BlackscholesBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void explicitVec(Blackhole blackhole, MyState myState) {
+    public void explicitVec(Blackhole blackhole, MyState myState, JMHBenchmarkConfig plugins) {
         Blackscholes.vector();
         blackhole.consume(Blackscholes.getPrices());
     }
@@ -57,7 +59,7 @@ public class BlackscholesBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fullVec(Blackhole blackhole, MyState myState) {
+    public void fullVec(Blackhole blackhole, MyState myState, JMHBenchmarkConfig plugins) {
         Blackscholes.vector();
         blackhole.consume(Blackscholes.getPrices());
     }

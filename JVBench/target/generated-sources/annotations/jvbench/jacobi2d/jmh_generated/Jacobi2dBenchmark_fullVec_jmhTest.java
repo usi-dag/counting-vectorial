@@ -33,6 +33,7 @@ import org.openjdk.jmh.results.AggregationPolicy;
 import org.openjdk.jmh.runner.FailureAssistException;
 
 import jvbench.jacobi2d.jmh_generated.Jacobi2dBenchmark_jmhType;
+import jvbench.jmh_generated.JMHBenchmarkConfig_jmhType;
 import jvbench.jacobi2d.jmh_generated.Jacobi2dBenchmark_MyState_jmhType;
 public final class Jacobi2dBenchmark_fullVec_jmhTest {
 
@@ -70,32 +71,74 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0 = _jmh_tryInit_f_jacobi2dbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             Jacobi2dBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            fullVec_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_jacobi2dbenchmark0_0);
+            fullVec_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_jacobi2dbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+                    l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                     res.allOps++;
                 }
             } catch (Throwable e) {
                 if (!(e instanceof InterruptedException)) throw e;
             }
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_jacobi2dbenchmark0_0 = null;
             }
@@ -114,12 +157,12 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fullVec_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
+    public static void fullVec_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+            l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -139,32 +182,74 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0 = _jmh_tryInit_f_jacobi2dbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             Jacobi2dBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            fullVec_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_jacobi2dbenchmark0_0);
+            fullVec_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_jacobi2dbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+                    l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                     res.allOps++;
                 }
             } catch (Throwable e) {
                 if (!(e instanceof InterruptedException)) throw e;
             }
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_jacobi2dbenchmark0_0 = null;
             }
@@ -183,12 +268,12 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fullVec_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
+    public static void fullVec_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+            l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -208,14 +293,34 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0 = _jmh_tryInit_f_jacobi2dbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             Jacobi2dBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                 res.allOps++;
             }
 
@@ -224,20 +329,42 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
             int batchSize = iterationParams.getBatchSize();
             int opsPerInv = benchmarkParams.getOpsPerInvocation();
             SampleBuffer buffer = new SampleBuffer();
-            fullVec_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_mystate1_1, l_jacobi2dbenchmark0_0);
+            fullVec_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_jacobi2dbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+                    l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
                     res.allOps++;
                 }
             } catch (Throwable e) {
                 if (!(e instanceof InterruptedException)) throw e;
             }
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_jacobi2dbenchmark0_0 = null;
             }
@@ -253,7 +380,7 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fullVec_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
+    public static void fullVec_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
         long realTime = 0;
         long operations = 0;
         int rnd = (int)System.nanoTime();
@@ -268,7 +395,7 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
             }
             for (int b = 0; b < batchSize; b++) {
                 if (control.volatileSpoiler) return;
-                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+                l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
             }
             if (sample) {
                 buffer.add((System.nanoTime() - time) / opsPerInv);
@@ -296,18 +423,60 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
         }
         if (threadParams.getSubgroupIndex() == 0) {
             Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0 = _jmh_tryInit_f_jacobi2dbenchmark0_0(control);
+            JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G = _jmh_tryInit_f_jmhbenchmarkconfig2_G(control);
             Jacobi2dBenchmark_MyState_jmhType l_mystate1_1 = _jmh_tryInit_f_mystate1_1(control);
 
             control.preSetup();
+            if (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (!l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.beforeIterationSetup();
+                        l_jmhbenchmarkconfig2_G.readyIteration = true;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.setupIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
 
             notifyControl.startMeasurement = true;
             RawResults res = new RawResults();
             int batchSize = iterationParams.getBatchSize();
-            fullVec_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_mystate1_1, l_jacobi2dbenchmark0_0);
+            fullVec_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_mystate1_1, l_jmhbenchmarkconfig2_G, l_jacobi2dbenchmark0_0);
             control.preTearDown();
+            if (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.compareAndSet(l_jmhbenchmarkconfig2_G, 0, 1)) {
+                try {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (l_jmhbenchmarkconfig2_G.readyIteration) {
+                        l_jmhbenchmarkconfig2_G.afterIterationTearDown();
+                        l_jmhbenchmarkconfig2_G.readyIteration = false;
+                    }
+                } catch (Throwable t) {
+                    control.isFailing = true;
+                    throw t;
+                } finally {
+                    JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.set(l_jmhbenchmarkconfig2_G, 0);
+                }
+            } else {
+                while (JMHBenchmarkConfig_jmhType.tearIterationMutexUpdater.get(l_jmhbenchmarkconfig2_G) == 1) {
+                    if (control.isFailing) throw new FailureAssistException();
+                    if (Thread.interrupted()) throw new InterruptedException();
+                }
+            }
 
             if (control.isLastIteration()) {
+                synchronized(this.getClass()) {
+                    f_jmhbenchmarkconfig2_G = null;
+                }
                 f_mystate1_1 = null;
                 f_jacobi2dbenchmark0_0 = null;
             }
@@ -321,17 +490,42 @@ public final class Jacobi2dBenchmark_fullVec_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void fullVec_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
+    public static void fullVec_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, Jacobi2dBenchmark_MyState_jmhType l_mystate1_1, JMHBenchmarkConfig_jmhType l_jmhbenchmarkconfig2_G, Jacobi2dBenchmark_jmhType l_jacobi2dbenchmark0_0) throws Throwable {
         long realTime = 0;
         result.startTime = System.nanoTime();
         for (int b = 0; b < batchSize; b++) {
             if (control.volatileSpoiler) return;
-            l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole);
+            l_jacobi2dbenchmark0_0.fullVec(l_mystate1_1, blackhole, l_jmhbenchmarkconfig2_G);
         }
         result.stopTime = System.nanoTime();
         result.realTime = realTime;
     }
 
+    
+    static volatile JMHBenchmarkConfig_jmhType f_jmhbenchmarkconfig2_G;
+    
+    JMHBenchmarkConfig_jmhType _jmh_tryInit_f_jmhbenchmarkconfig2_G(InfraControl control) throws Throwable {
+        JMHBenchmarkConfig_jmhType val = f_jmhbenchmarkconfig2_G;
+        if (val != null) {
+            return val;
+        }
+        synchronized(this.getClass()) {
+            try {
+            if (control.isFailing) throw new FailureAssistException();
+            val = f_jmhbenchmarkconfig2_G;
+            if (val != null) {
+                return val;
+            }
+            val = new JMHBenchmarkConfig_jmhType();
+            val.readyTrial = true;
+            f_jmhbenchmarkconfig2_G = val;
+            } catch (Throwable t) {
+                control.isFailing = true;
+                throw t;
+            }
+        }
+        return val;
+    }
     
     Jacobi2dBenchmark_jmhType f_jacobi2dbenchmark0_0;
     

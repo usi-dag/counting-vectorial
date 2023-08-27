@@ -3,6 +3,8 @@ package jvbench.micro;
 import jdk.incubator.vector.DoubleVector;
 import jdk.incubator.vector.VectorOperators;
 import jdk.incubator.vector.VectorSpecies;
+import jvbench.JMHBenchmarkConfig;
+
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
@@ -213,7 +215,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarTAN(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarTAN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.tan(state.x[i]));
         }
@@ -221,7 +223,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorTAN(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorTAN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -236,7 +238,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarTANH(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarTANH(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.tanh(state.x[i]));
         }
@@ -244,7 +246,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorTANH(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorTANH(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -259,7 +261,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarSIN(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarSIN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.sin(state.x[i]));
         }
@@ -267,7 +269,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorSIN(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorSIN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -282,7 +284,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarSINH(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarSINH(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.sinh(state.x[i]));
         }
@@ -290,7 +292,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorSINH(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorSINH(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -305,7 +307,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarCOS(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarCOS(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.cos(state.x[i]));
         }
@@ -313,7 +315,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorCOS(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorCOS(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -329,7 +331,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarCOSH(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarCOSH(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.cosh(state.x[i]));
         }
@@ -337,7 +339,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorCOSH(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorCOSH(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -352,7 +354,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarASIN(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarASIN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.asin(state.x[i]));
         }
@@ -360,7 +362,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorASIN(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorASIN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -375,7 +377,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarACOS(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarACOS(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.acos(state.x[i]));
         }
@@ -383,7 +385,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorACOS(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorACOS(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -398,7 +400,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarATAN(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarATAN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.atan(state.x[i]));
         }
@@ -406,7 +408,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorATAN(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorATAN(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -421,7 +423,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarCBRT(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarCBRT(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.cbrt(state.x[i]));
         }
@@ -429,7 +431,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorCBRT(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorCBRT(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -444,7 +446,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarLOG(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarLOG(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.log(state.x[i]));
         }
@@ -452,7 +454,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorLOG(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorLOG(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -467,7 +469,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarLOG10(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarLOG10(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.log10(state.x[i]));
         }
@@ -475,7 +477,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorLOG10(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorLOG10(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -490,7 +492,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarLOG1P(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarLOG1P(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.log1p(state.x[i]));
         }
@@ -498,7 +500,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorLOG1P(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorLOG1P(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -514,7 +516,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarEXP(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarEXP(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.exp(state.x[i]));
         }
@@ -522,7 +524,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorEXP(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorEXP(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -538,7 +540,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarEXPM1(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarEXPM1(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.expm1(state.x[i]));
         }
@@ -546,7 +548,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorEXPM1(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorEXPM1(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -562,7 +564,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarATAN2(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarATAN2(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.atan2(state.x[i], state.y[i]));
         }
@@ -570,7 +572,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorATAN2(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorATAN2(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -586,7 +588,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarPOW(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarPOW(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.pow(state.x[i], state.y[i]));
         }
@@ -594,7 +596,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorPOW(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorPOW(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -610,7 +612,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarPOW0(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarPOW0(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.pow(state.x[i], 0));
         }
@@ -618,7 +620,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorPOW0(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorPOW0(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -633,7 +635,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarPOW1(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarPOW1(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.pow(state.x[i], 1));
         }
@@ -641,7 +643,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorPOW1(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorPOW1(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -656,7 +658,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarPOW2(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarPOW2(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.pow(state.x[i], 2));
         }
@@ -664,7 +666,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorPOW2(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorPOW2(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -679,7 +681,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarMUL0(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarMUL0(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(state.x[i] * 0);
         }
@@ -687,7 +689,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorMUL0(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorMUL0(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -702,7 +704,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarMUL1(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarMUL1(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(state.x[i] * 1);
         }
@@ -710,7 +712,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorMUL1(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorMUL1(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -725,7 +727,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarMUL2(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarMUL2(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(state.x[i] * state.x[i]);
         }
@@ -733,7 +735,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorMUL2(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorMUL2(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {
@@ -749,7 +751,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void scalarHYPOT(ExecutionPlan state, Blackhole blackhole) {
+    public void scalarHYPOT(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         for (int i = 0; i < ITERATIONS_LIMIT; i++) {
             blackhole.consume(Math.hypot(state.x[i], state.y[i]));
         }
@@ -757,7 +759,7 @@ public class TranscendentalOperationBenchmark {
 
     @Benchmark
     @OutputTimeUnit(TimeUnit.SECONDS)
-    public void vectorHYPOT(ExecutionPlan state, Blackhole blackhole) {
+    public void vectorHYPOT(ExecutionPlan state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         final int limit = DOUBLE_SPECIES.loopBound(state.x.length);
         int i;
         for (i = 0; i < limit; i += SPECIES_LENGTH) {

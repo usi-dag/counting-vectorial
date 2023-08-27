@@ -2,6 +2,8 @@ package jvbench.streamcluster;
 
 import org.openjdk.jmh.annotations.*;
 
+import jvbench.JMHBenchmarkConfig;
+
 import java.util.concurrent.TimeUnit;
 
 public class StreamclusterBenchmark {
@@ -33,7 +35,7 @@ public class StreamclusterBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void serial(MyState state) {
+    public void serial(MyState state, JMHBenchmarkConfig plugins) {
         StreamCluster.streamCluster(state.stream, state.kMin, state.kMax, state.dim, state.chunkSize, state.clusterSize, state.outputFileName, false);
     }
 
@@ -43,7 +45,7 @@ public class StreamclusterBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void autoVec(MyState state) {
+    public void autoVec(MyState state, JMHBenchmarkConfig plugins) {
         StreamCluster.streamCluster(state.stream, state.kMin, state.kMax, state.dim, state.chunkSize, state.clusterSize, state.outputFileName, false);
     }
 
@@ -53,7 +55,7 @@ public class StreamclusterBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void explicitVec(MyState state) {
+    public void explicitVec(MyState state, JMHBenchmarkConfig plugins) {
         StreamCluster.streamCluster(state.stream, state.kMin, state.kMax, state.dim, state.chunkSize, state.clusterSize, state.outputFileName, true);
     }
 
@@ -63,7 +65,7 @@ public class StreamclusterBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fullVec(MyState state) {
+    public void fullVec(MyState state, JMHBenchmarkConfig plugins) {
         StreamCluster.streamCluster(state.stream, state.kMin, state.kMax, state.dim, state.chunkSize, state.clusterSize, state.outputFileName, true);
     }
 }

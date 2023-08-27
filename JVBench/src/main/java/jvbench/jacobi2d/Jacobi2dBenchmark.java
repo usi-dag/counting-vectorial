@@ -3,6 +3,8 @@ package jvbench.jacobi2d;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
+import jvbench.JMHBenchmarkConfig;
+
 import java.util.concurrent.TimeUnit;
 
 public class Jacobi2dBenchmark {
@@ -39,7 +41,7 @@ public class Jacobi2dBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void serial(MyState state, Blackhole blackhole) {
+    public void serial(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Jacobi2d.serial(state.tSteps, state.size, state.a, state.b);
     }
 
@@ -49,7 +51,7 @@ public class Jacobi2dBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void autoVec(MyState state, Blackhole blackhole) {
+    public void autoVec(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Jacobi2d.serial(state.tSteps, state.size, state.a, state.b);
     }
 
@@ -59,7 +61,7 @@ public class Jacobi2dBenchmark {
     @Fork(value = 5, jvmArgsAppend = {"-XX:-UseSuperWord"})
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void explicitVec(MyState state, Blackhole blackhole) {
+    public void explicitVec(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Jacobi2d.vector(state.tSteps, state.size, state.a, state.b);
     }
 
@@ -69,7 +71,7 @@ public class Jacobi2dBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public void fullVec(MyState state, Blackhole blackhole) {
+    public void fullVec(MyState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         Jacobi2d.vector(state.tSteps, state.size, state.a, state.b);
     }
 

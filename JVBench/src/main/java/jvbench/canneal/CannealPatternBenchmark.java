@@ -3,6 +3,8 @@ package jvbench.canneal;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
+import jvbench.JMHBenchmarkConfig;
+
 import java.util.concurrent.TimeUnit;
 
 public class CannealPatternBenchmark {
@@ -112,7 +114,7 @@ public class CannealPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void minSizeCheck(MinSizeCheckState state, Blackhole blackhole) {
+    public static void minSizeCheck(MinSizeCheckState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.vector();
     }
 
@@ -122,7 +124,7 @@ public class CannealPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void reductionExternal(ReductionExternalState state, Blackhole blackhole) {
+    public static void reductionExternal(ReductionExternalState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.vector();
     }
 
@@ -132,7 +134,7 @@ public class CannealPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void reductionInternal(ReductionInternalState state, Blackhole blackhole) {
+    public static void reductionInternal(ReductionInternalState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.vector();
     }
 
@@ -142,7 +144,7 @@ public class CannealPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void noMinSizeCheck(NoMinSizeCheckState state, Blackhole blackhole) {
+    public static void noMinSizeCheck(NoMinSizeCheckState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.vector();
     }
 
@@ -153,7 +155,7 @@ public class CannealPatternBenchmark {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @Measurement(iterations = 10)
-    public static void indexInRange(IndexInRangeState state, Blackhole blackhole) {
+    public static void indexInRange(IndexInRangeState state, Blackhole blackhole, JMHBenchmarkConfig plugins) {
         state.canneal.vector();
     }
 
