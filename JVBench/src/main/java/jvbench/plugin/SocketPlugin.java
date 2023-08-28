@@ -1,7 +1,7 @@
 // Compile and create jar
 // On PC:
 // javac -cp "/home/thomas/Documents/counting-vectorial/plugin:/home/thomas/Documents/counting-vectorial/JVBench/src/main/java" /home/thomas/Documents/counting-vectorial/plugin/SocketPlugin.java && jar cf SocketPlugin.jar SocketPlugin.class
-package plugin;
+package jvbench.plugin;
 
 import jvbench.Plugin;
 
