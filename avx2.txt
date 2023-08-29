@@ -1,0 +1,1227 @@
+<tbody><tr>
+<th scope="col" class="columncaption" align="left" valign="top"><div class="headerpadding">
+<div class="pad5x10">Oracle Solaris Mnemonic</div>
+</div></th>
+<th scope="col" class="columncaption" align="left" valign="top"><div class="headerpadding">
+<div class="pad5x10">Intel/AMD Mnemonic</div>
+</div></th>
+<th scope="col" class="columncaption" align="left" valign="top"><div class="headerpadding">
+<div class="pad5x10">Description</div>
+</div></th>
+<th scope="col" class="columncaption" align="left" valign="top"><div class="headerpadding">
+<div class="pad5x10">Reference</div>
+</div></th>
+</tr>
+
+
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-817"></a><tt>vmovntdqa</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>MOVNTDQA</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Load Double Quadword Non-Temporal Aligned Hint</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-369 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-818"></a><tt>vmpsadbw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>MPSADBW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Compute Multiple Packed Sums of Absolute Difference</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 3-577 (253666-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-819"></a><tt>vpabs(w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PABSB</tt></div>
+<div class="pad5x10"><tt>PABSW</tt></div>
+<div class="pad5x10"><tt>PABSD</tt></div>
+<div class="pad5x10"><tt>PABSQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Absolute Value</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-404 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-820"></a><tt>vpackss(dw|wb)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PACKSSWB</tt></div>
+<div class="pad5x10"><tt>PACKSSDW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Pack with Signed Saturation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-27 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-821"></a><tt>vpackusdw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PACKUSDW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Pack with Unsigned Saturation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-32 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-822"></a><tt>vpackuswb</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PACKUSWB</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Pack with Unsigned Saturation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-35 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-823"></a><tt>vpadd(q|w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PADDB</tt></div>
+<div class="pad5x10"><tt>PADDW</tt></div>
+<div class="pad5x10"><tt>PADDD</tt></div>
+<div class="pad5x10"><tt>PADDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Add Packed Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-408 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-824"></a><tt>vpadds(w|b)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PADDSB</tt></div>
+<div class="pad5x10"><tt>PADDSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Add Packed Signed Integers with Signed Saturation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-44 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-825"></a><tt>vpaddus(w|b)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PADDUSB</tt></div>
+<div class="pad5x10"><tt>PADDUSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Add Packed Unsigned Integers with Unsigned Saturation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-47 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-826"></a><tt>vpalignr</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PALIGNR</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Align Right</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-50 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-827"></a><tt>vpand</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PAND</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Logical AND</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-413 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-828"></a><tt>vpandn</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PANDN</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Logical AND NOT</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-416 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-829"></a><tt>vpavg(w|b)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PAVGB</tt></div>
+<div class="pad5x10"><tt>PAVGW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Average Packed Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-58 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-830"></a><tt>vpblendvb</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PBLENDVB</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Variable Blend Packed Bytes</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-61 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-831"></a><tt>vpblendw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PBLENDW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Blend Packed Words</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-65 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-832"></a><tt>vpcmpeq(q|w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PCMPEQB</tt></div>
+<div class="pad5x10"><tt>PCMPEQW</tt></div>
+<div class="pad5x10"><tt>PCMPEQD</tt></div>
+<div class="pad5x10"><tt>PCMPEQQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Compare Packed Integers for Equality</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-419 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-833"></a><tt>vpcmpgt(q|w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PCMPGTB</tt></div>
+<div class="pad5x10"><tt>PCMPGTW</tt></div>
+<div class="pad5x10"><tt>PCMPGTD</tt></div>
+<div class="pad5x10"><tt>PCMPGTQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Compare Packed Integers for Greater Than</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-424 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-834"></a><tt>vphaddsw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PHADDSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Horizontal Add and Saturate</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-105 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-835"></a><tt>vphadd(w|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PHADDW</tt></div>
+<div class="pad5x10"><tt>PHADDD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Horizontal Add</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-101 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-836"></a><tt>vphsubsw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PHSUBSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Horizontal Subtract and Saturate</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-112 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-837"></a><tt>vphsub(w|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PHSUBW</tt></div>
+<div class="pad5x10"><tt>PHSUBD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Horizontal Subtract</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-109 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-838"></a><tt>vpmaddubsw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMADDUBSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply and Add Packed Signed and Unsigned Bytes</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-118 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-839"></a><tt>vpmaddwd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMADDWD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply and Add Packed Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-120 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-840"></a><tt>vpmaxs(w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMAXSB</tt></div>
+<div class="pad5x10"><tt>PMAXSW</tt></div>
+<div class="pad5x10"><tt>PMAXSD</tt></div>
+<div class="pad5x10"><tt>PMAXSQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Maximum of Packed Signed Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-471 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-841"></a><tt>vpmaxub</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMAXUB</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Maximum of Packed Unsigned Byte Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-131 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-842"></a><tt>vpmaxud</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMAXUD</tt></div>
+<div class="pad5x10"><tt>PMAXUQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Maximum of Packed Unsigned Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-476 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-843"></a><tt>vpmaxuw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMAXUW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Maximum of Packed Word Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-136 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-844"></a><tt>vpminsb</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMINSB</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Minimum of Packed Signed Byte Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-138 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-845"></a><tt>vpminsd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMINSD</tt></div>
+<div class="pad5x10"><tt>PMINSQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Minimum of Packed Signed Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-479 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-846"></a><tt>vpminsw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMINSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Minimum of Packed Signed Word Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-143 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-847"></a><tt>vpminub</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMINUB</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Minimum of Packed Unsigned Byte Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-146 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-848"></a><tt>vpminud</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMINUD</tt></div>
+<div class="pad5x10"><tt>PMINUQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Minimum of Packed Unsigned Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-482 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-849"></a><tt>vpminuw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMINUW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Minimum of Packed Word Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-151 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-850"></a><tt>vpmovmskb</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMOVMSKB</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Move Byte Mask</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-153 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-851"></a><tt>vpmovsx(bd|bq|bw|dq|wd|wq)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMOVSX</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Move with Sign Extend</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-500 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-852"></a><tt>vpmovzx(bd|bq|bw|dq|wd|wq)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMOVZX</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Move with Zero Extend</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-507 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-853"></a><tt>vpmuldq</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMULDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply Packed Doubleword Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-514 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-854"></a><tt>vpmulhrsw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMULHRSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Multiply High with Round and Scale</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-165 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-855"></a><tt>vpmulhuw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMULHUW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply Packed Unsigned Integers and Store High Result</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-168 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-856"></a><tt>vpmulhw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMULHW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply Packed Signed Integers and Store High Result</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-172 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-857"></a><tt>vpmulld</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMULLD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply Packed Integers and Store Low Result</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-516 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-858"></a><tt>vpmullw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMULLW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply Packed Signed Integers and Store Low Result</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-177 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-859"></a><tt>vpmuludq</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PMULUDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Multiply Packed Unsigned Doubleword Integers</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-519 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-860"></a><tt>vpor</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>POR</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Bitwise Logical Or</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-521 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-861"></a><tt>vpsadbw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSADBW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Compute Sum of Absolute Differences</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-198 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-862"></a><tt>vpshufb</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSHUFB</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Shuffle Bytes</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-201 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-863"></a><tt>vpshufd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSHUFD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Shuffle Packed Doublewords</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-533 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-864"></a><tt>vpshufhw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSHUFHW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Shuffle Packed High Words</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-206 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-865"></a><tt>vpshuflw</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSHUFLW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Shuffle Packed Low Words</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-208 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-866"></a><tt>vpsign(w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSIGNB</tt></div>
+<div class="pad5x10"><tt>PSIGNW</tt></div>
+<div class="pad5x10"><tt>PSIGND</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed SIGN</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-211 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-867"></a><tt>vpslldq</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSLLDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Shift Double Quadword Left Logical</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-215 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-868"></a><tt>vpsll(q|w|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSLLW</tt></div>
+<div class="pad5x10"><tt>PSLLD</tt></div>
+<div class="pad5x10"><tt>PSLLQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Bit Shift Left</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-536 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-869"></a><tt>vpsra(w|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSRAW</tt></div>
+<div class="pad5x10"><tt>PSRAD</tt></div>
+<div class="pad5x10"><tt>PSRAQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Bit Shift Arithmetic Right</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-544 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-870"></a><tt>vpsrldq</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSRLDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Shift Double Quadword Right Logical</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-228 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-871"></a><tt>vpsrl(q|w|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSRLW</tt></div>
+<div class="pad5x10"><tt>PSRLD</tt></div>
+<div class="pad5x10"><tt>PSRLQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Shift Packed Data Right Logical</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-550 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-872"></a><tt>vpsub(q|w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSUBB</tt></div>
+<div class="pad5x10"><tt>PSUBW</tt></div>
+<div class="pad5x10"><tt>PSUBD</tt></div>
+<div class="pad5x10"><tt>PSUBQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Packed Integer Subtract</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-563 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-873"></a><tt>vpsubs(w|b)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSUBSB</tt></div>
+<div class="pad5x10"><tt>PSUBSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Subtract Packed Signed Integers with Signed Saturation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-243 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-874"></a><tt>vpsubus(w|b)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PSUBUSB</tt></div>
+<div class="pad5x10"><tt>PSUBUSW</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Subtract Packed Unsigned Integers with Unsigned Saturation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-246 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-875"></a><tt>vpunpckh(bw|dq|qdq|wd)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PUNPCKHBW</tt></div>
+<div class="pad5x10"><tt>PUNPCKHWD</tt></div>
+<div class="pad5x10"><tt>PUNPCKHDQ</tt></div>
+<div class="pad5x10"><tt>PUNPCKHQDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Unpack High Data</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-571 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-876"></a><tt>vpunpckl(bw|dq|qdq|wd)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PUNPCKLBW</tt></div>
+<div class="pad5x10"><tt>PUNPCKLWD</tt></div>
+<div class="pad5x10"><tt>PUNPCKLDQ</tt></div>
+<div class="pad5x10"><tt>PUNPCKLQDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Unpack Low Data</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-578 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-877"></a><tt>vpxor</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>PXOR</tt></div>
+<div class="pad5x10"><tt>PXORD</tt></div>
+<div class="pad5x10"><tt>PXORQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Exclusive Or</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-612 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-878"></a><tt>vbroadcast(sd|ss)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VBROADCAST</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Load with Broadcast Floating-Point Data</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-27 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-879"></a><tt>vextracti128</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VEXTRACTI128</tt></div>
+<div class="pad5x10"><tt>VEXTRACTI32x4</tt></div>
+<div class="pad5x10"><tt>VEXTRACTI64x4</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Extract packed Integer Values</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-155 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-880"></a><tt>vgatherdp(d|s)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VGATHERDPS</tt></div>
+<div class="pad5x10"><tt>VGATHERDPD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Gather Packed Single, Packed Double with Signed Dword</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-273 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-881"></a><tt>vgatherqp(d|s)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VGATHERQPS</tt></div>
+<div class="pad5x10"><tt>VGATHERQPD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Gather Packed Single, Packed Double with Signed Qword Indices</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-275 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-882"></a><tt>vinserti128</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VINSERTI128</tt></div>
+<div class="pad5x10"><tt>VINSERTI32x4</tt></div>
+<div class="pad5x10"><tt>VINSERTI64x4</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Insert Packed Integer Values</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-308 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-883"></a><tt>vpblendd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPBLENDD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Blend Packed Dwords</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-509 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-884"></a><tt>vpbroadcast(q|w|b|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPBROADCAST</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Load Integer and Broadcast</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-34 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-885"></a><tt>vbroadcasti128</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPBROADCAST</tt></div>
+<div class="pad5x10"><tt>VBROADCASTI128</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Broadcast Integer Data</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-511 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-886"></a><tt>vperm2i128</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPERM2I128</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Permute Integer Values</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-519 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-887"></a><tt>vpermd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPERMD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Permute Packed Doublewords/Elements</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-437 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-888"></a><tt>vpermpd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPERMPD</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Permute Double-Precision Floating-Point Elements</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-455 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-889"></a><tt>vpermps</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPERMPS</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Permute Single-Precision Floating-Point Elements</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-458 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-890"></a><tt>vpermq</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPERMQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Qwords Element Permutation</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-460 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-891"></a><tt>vpgatherdd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPGATHERDD</tt></div>
+<div class="pad5x10"><tt>VPGATHERDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Gather Packed Dword, Packed Qword with Signed Dword Indices</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-467 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-892"></a><tt>vpgatherdq</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPGATHERDD</tt></div>
+<div class="pad5x10"><tt>VPGATHERDQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Gather Packed Dword, Packed Qword with Signed Dword Indices</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-467 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-893"></a><tt>vpgatherqd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPGATHERQD</tt></div>
+<div class="pad5x10"><tt>VPGATHERQQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Gather Packed Dword, Packed Qword with Signed Qword Indices</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-469 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-894"></a><tt>vpgatherqq</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPGATHERQD</tt></div>
+<div class="pad5x10"><tt>VPGATHERQQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Gather Packed Dword, Packed Qword with Signed Qword Indices</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-469 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-895"></a><tt>vpmaskmov(q|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPMASKMOV</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Conditional SIMD Integer Packed Loads and Stores</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 4-529 (253667-048US/Sep.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-896"></a><tt>vpsllv(q|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPSLLVW</tt></div>
+<div class="pad5x10"><tt>VPSLLVD</tt></div>
+<div class="pad5x10"><tt>VPSLLVQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Variable Bit Shift Left Logical</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-557 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-897"></a><tt>vpsravd</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPSRAVD</tt></div>
+<div class="pad5x10"><tt>VPSRAVQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Variable Bit Shift Right Arithmetic</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-609 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+<tr class="yellow2">
+<td scope="row" align="left" valign="top">
+<div class="pad5x10"><a name="indexterm-id-898"></a><tt>vpsrlv(q|d)</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"><tt>VPSRLVW</tt></div>
+<div class="pad5x10"><tt>VPSRLVD</tt></div>
+<div class="pad5x10"><tt>VPSRLVQ</tt></div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10">Variable Bit Shift Right Logical</div>
+</td>
+<td align="left" valign="top">
+<div class="pad5x10"> page 5-560 (319433-016/Oct.2013)</div>
+</td>
+</tr>
+
+</tbody>
