@@ -1,4 +1,0 @@
-package jvbench.somier.jmh_generated;
-public class SomierPatternBenchmark_IndexInRangeState_jmhType extends SomierPatternBenchmark_IndexInRangeState_jmhType_B3 {
-}
-

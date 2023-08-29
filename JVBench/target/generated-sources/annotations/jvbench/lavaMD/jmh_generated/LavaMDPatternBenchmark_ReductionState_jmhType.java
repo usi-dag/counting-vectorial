@@ -1,4 +1,0 @@
-package jvbench.lavaMD.jmh_generated;
-public class LavaMDPatternBenchmark_ReductionState_jmhType extends LavaMDPatternBenchmark_ReductionState_jmhType_B3 {
-}
-

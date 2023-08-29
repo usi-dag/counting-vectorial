@@ -1,4 +1,0 @@
-package jvbench.canneal.jmh_generated;
-public class CannealPatternBenchmark_IndexInRangeState_jmhType extends CannealPatternBenchmark_IndexInRangeState_jmhType_B3 {
-}
-

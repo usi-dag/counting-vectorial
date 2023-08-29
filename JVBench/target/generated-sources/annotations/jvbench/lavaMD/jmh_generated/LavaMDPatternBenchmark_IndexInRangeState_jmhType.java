@@ -1,4 +1,0 @@
-package jvbench.lavaMD.jmh_generated;
-public class LavaMDPatternBenchmark_IndexInRangeState_jmhType extends LavaMDPatternBenchmark_IndexInRangeState_jmhType_B3 {
-}
-

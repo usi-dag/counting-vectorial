@@ -1,4 +1,0 @@
-package jvbench.pathfinder.jmh_generated;
-public class PathfinderPatternBenchmark_ConditionInsideLoopState_jmhType extends PathfinderPatternBenchmark_ConditionInsideLoopState_jmhType_B3 {
-}
-

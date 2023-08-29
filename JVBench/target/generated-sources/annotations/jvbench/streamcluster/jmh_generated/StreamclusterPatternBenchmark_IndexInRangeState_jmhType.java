@@ -1,4 +1,0 @@
-package jvbench.streamcluster.jmh_generated;
-public class StreamclusterPatternBenchmark_IndexInRangeState_jmhType extends StreamclusterPatternBenchmark_IndexInRangeState_jmhType_B3 {
-}
-

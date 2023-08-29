@@ -1,4 +1,0 @@
-package jvbench.blackscholes.jmh_generated;
-public class BlackscholesBenchmark_MyState_jmhType extends BlackscholesBenchmark_MyState_jmhType_B3 {
-}
-

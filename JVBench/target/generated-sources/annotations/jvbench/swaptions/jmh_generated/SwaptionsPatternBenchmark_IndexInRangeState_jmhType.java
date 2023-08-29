@@ -1,4 +1,0 @@
-package jvbench.swaptions.jmh_generated;
-public class SwaptionsPatternBenchmark_IndexInRangeState_jmhType extends SwaptionsPatternBenchmark_IndexInRangeState_jmhType_B3 {
-}
-

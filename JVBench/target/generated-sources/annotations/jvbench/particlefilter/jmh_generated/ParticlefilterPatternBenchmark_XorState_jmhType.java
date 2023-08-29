@@ -1,4 +1,0 @@
-package jvbench.particlefilter.jmh_generated;
-public class ParticlefilterPatternBenchmark_XorState_jmhType extends ParticlefilterPatternBenchmark_XorState_jmhType_B3 {
-}
-

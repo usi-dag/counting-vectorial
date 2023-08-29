@@ -4,8 +4,8 @@ public interface Plugin {
 
     default void beforeTrialSetup() {}
     default void afterTrialTearDown() {}
-    default void beforeIterationSetup(int iteration) {}
-    default void afterIterationTearDown(int iteration) {}
+    default void beforeIterationSetup(String benchmarkName) {}
+    default void afterIterationTearDown(String benchmarkName) {}
     default void beforeInvocationSetup() {}
     default void afterInvocationTearDown() {}
 

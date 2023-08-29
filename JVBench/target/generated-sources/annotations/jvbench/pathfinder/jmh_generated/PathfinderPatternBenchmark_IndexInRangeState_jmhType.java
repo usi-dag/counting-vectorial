@@ -1,4 +1,0 @@
-package jvbench.pathfinder.jmh_generated;
-public class PathfinderPatternBenchmark_IndexInRangeState_jmhType extends PathfinderPatternBenchmark_IndexInRangeState_jmhType_B3 {
-}
-

@@ -63,9 +63,15 @@ void setUpNextIteration() {
 }
 
 // Called once "beforeOperationTearDown" is called by the Java Plugin
-void finalizeIteration(string benchmark) {
+void finalizeIteration(string benchmarkName) {
 
-    string fileName = "results/" + benchmark + "_instructionsCount.csv";
+    // Parse the benchmark name from "jvbench.axpy.AxpyBenchmark.autoVec"
+    // to AxpyBenchmark
+    benchmarkName = benchmarkName.substr(benchmarkName.find_first_of('.') + 1);
+    benchmarkName = benchmarkName.substr(benchmarkName.find_first_of('.') + 1);
+    benchmarkName = benchmarkName.substr(0, benchmarkName.find("Benchmark"));
+
+    string fileName = "results/" + benchmarkName + "_instructionsCount.csv";
 
     int itr = iterationNumber.load();
     // Initialize the output file
@@ -115,7 +121,7 @@ void handle_client(int client_socket) {
         // The buffer looks something like this A10 ~ fj-kmeans
         string strBuffer(buffer);
         string iterationMode = strBuffer.substr(0, 1);
-        string benchmark = strBuffer.substr(4);
+        string benchmarkName = strBuffer.substr(4);
 
         // Call the corresponding method depending if we are at the start of end of an iteration
         string response;
@@ -123,7 +129,7 @@ void handle_client(int client_socket) {
             setUpNextIteration();
             response = "Next iteration has been setup\n";
         } else if (iterationMode == "B") {
-            finalizeIteration(benchmark);
+            finalizeIteration(benchmarkName);
             response = "Iteration has been finalized\n";
         } else {
             cerr << "Server (Pintool) could not recognize the type state of the current iteration." << endl

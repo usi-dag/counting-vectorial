@@ -1,4 +1,0 @@
-package jvbench.micro.jmh_generated;
-public class TranscendentalOperationBenchmark_ExecutionPlan_jmhType extends TranscendentalOperationBenchmark_ExecutionPlan_jmhType_B3 {
-}
-

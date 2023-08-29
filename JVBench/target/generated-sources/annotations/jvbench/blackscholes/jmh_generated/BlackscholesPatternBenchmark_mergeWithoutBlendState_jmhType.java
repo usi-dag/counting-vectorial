@@ -1,4 +1,0 @@
-package jvbench.blackscholes.jmh_generated;
-public class BlackscholesPatternBenchmark_mergeWithoutBlendState_jmhType extends BlackscholesPatternBenchmark_mergeWithoutBlendState_jmhType_B3 {
-}
-

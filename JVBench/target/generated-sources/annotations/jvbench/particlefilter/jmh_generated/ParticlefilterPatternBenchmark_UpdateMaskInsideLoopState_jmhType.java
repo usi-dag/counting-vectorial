@@ -1,4 +1,0 @@
-package jvbench.particlefilter.jmh_generated;
-public class ParticlefilterPatternBenchmark_UpdateMaskInsideLoopState_jmhType extends ParticlefilterPatternBenchmark_UpdateMaskInsideLoopState_jmhType_B3 {
-}
-

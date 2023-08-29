@@ -40,7 +40,7 @@ public class SocketPlugin implements Plugin {
         }
 
         // This function is called before a benchmark iteration starts
-        public void beforeIterationSetup(int iteration) {
+        public void beforeIterationSetup(String benchmarkName) {
 
             System.out.println(ANSI_RED + "beforeIterationSetup" + ANSI_RESET);
 
@@ -53,7 +53,7 @@ public class SocketPlugin implements Plugin {
                 // To make sure we do not continue before the file has been created
                 // System.out.println("Waiting for server's response");
                 String response = in.readLine();
-                // System.out.println("Server response: " + response);
+                System.out.println("Server response: " + response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -64,7 +64,7 @@ public class SocketPlugin implements Plugin {
         }
 
         // This function is called once the benchmark iteration is over
-        public void afterIterationTearDown(int iteration) {
+        public void afterIterationTearDown(String benchmarkName) {
 
             System.out.println(ANSI_RED + "afterIterationTearDown" + ANSI_RESET);
 

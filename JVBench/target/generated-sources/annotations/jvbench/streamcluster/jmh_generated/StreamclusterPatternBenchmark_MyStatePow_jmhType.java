@@ -1,4 +1,0 @@
-package jvbench.streamcluster.jmh_generated;
-public class StreamclusterPatternBenchmark_MyStatePow_jmhType extends StreamclusterPatternBenchmark_MyStatePow_jmhType_B3 {
-}
-

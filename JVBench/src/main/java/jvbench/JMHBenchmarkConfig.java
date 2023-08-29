@@ -7,6 +7,9 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.infra.BenchmarkParams;
+import org.openjdk.jmh.infra.IterationParams;
+import org.openjdk.jmh.runner.IterationType;
 
 @State(Scope.Benchmark)
 public class JMHBenchmarkConfig {
@@ -17,10 +20,9 @@ public class JMHBenchmarkConfig {
 			try {
 				for (final String pluginClass : pluginClasses.split(";")) {
 					if (!pluginClass.isEmpty()) {
-						plugins.add((Plugin) Class.forName(pluginClass).newInstance());
+						plugins.add((Plugin) Class.forName(pluginClass).getDeclaredConstructor().newInstance());
 					}
 				}
-				// plugins.add(new SocketPlugin());
 			} catch (Exception ex) {
 				throw new RuntimeException(ex);
 			}
@@ -28,20 +30,20 @@ public class JMHBenchmarkConfig {
 	}
 
 	private final List<Plugin> plugins = new ArrayList<>();
-	private int iteration = 0;
 
 	@Setup(Level.Iteration)
-	public void beforeIterationSetup() {
-		iteration++;
+	public void beforeIterationSetup(BenchmarkParams benchmarkParams, IterationParams iterationParams) {
 		for (Plugin plugin : plugins) {
-			plugin.beforeIterationSetup(iteration);
+			if(iterationParams.getType() == IterationType.MEASUREMENT)
+				plugin.beforeIterationSetup(benchmarkParams.getBenchmark());
 		}
 	}
 
 	@TearDown(Level.Iteration)
-	public void afterIterationTearDown() {
+	public void afterIterationTearDown(BenchmarkParams benchmarkParams, IterationParams iterationParams) {
 		for (Plugin plugin : plugins) {
-			plugin.afterIterationTearDown(iteration);
+			if(iterationParams.getType() == IterationType.MEASUREMENT)
+				plugin.afterIterationTearDown(benchmarkParams.getBenchmark());
 		}
 	}
 }

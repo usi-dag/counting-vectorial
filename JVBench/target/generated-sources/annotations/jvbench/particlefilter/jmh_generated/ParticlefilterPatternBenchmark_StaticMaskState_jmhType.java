@@ -1,4 +1,0 @@
-package jvbench.particlefilter.jmh_generated;
-public class ParticlefilterPatternBenchmark_StaticMaskState_jmhType extends ParticlefilterPatternBenchmark_StaticMaskState_jmhType_B3 {
-}
-

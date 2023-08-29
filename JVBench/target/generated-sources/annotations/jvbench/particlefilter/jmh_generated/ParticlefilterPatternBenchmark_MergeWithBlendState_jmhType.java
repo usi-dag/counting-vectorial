@@ -1,4 +1,0 @@
-package jvbench.particlefilter.jmh_generated;
-public class ParticlefilterPatternBenchmark_MergeWithBlendState_jmhType extends ParticlefilterPatternBenchmark_MergeWithBlendState_jmhType_B3 {
-}
-
