@@ -23,15 +23,9 @@ using std::string;
 using std::unordered_map;
 using std::pair;
 
-// Socket
-bool useSocket; // Boolean set through command line argument -s 1 or -s 0
-KNOB<BOOL> KnobUseSocket(KNOB_MODE_WRITEONCE, "pintool",
-    "s", "false", "Enable or disable the socket functionality");
-
 unordered_map<string, atomic<UINT64>> instructionsCounters;
 
 atomic<UINT64> iterationNumber = 0;
-
 
 void initMap() {
     std::ifstream inputFile("vectorialInstructions.txt");
@@ -66,7 +60,7 @@ void setUpNextIteration() {
 void finalizeIteration(string benchmarkName) {
 
     // Parse the benchmark name from "jvbench.axpy.AxpyBenchmark.autoVec"
-    // to AxpyBenchmark
+    // to "Axpy"
     benchmarkName = benchmarkName.substr(benchmarkName.find_first_of('.') + 1);
     benchmarkName = benchmarkName.substr(benchmarkName.find_first_of('.') + 1);
     benchmarkName = benchmarkName.substr(0, benchmarkName.find("Benchmark"));
@@ -215,19 +209,12 @@ int main(int argc, char *argv[]) {
 
     initMap();
 
-    useSocket = KnobUseSocket.Value();
+    // Create thread, which starts and calls initSocket
+    THREADID socketTID = PIN_SpawnInternalThread(initSocket, nullptr, 0, nullptr);
 
-    if(useSocket) {
-        // Create thread, which starts and calls initSocket
-        THREADID socketTID = PIN_SpawnInternalThread(initSocket, nullptr, 0, nullptr);
-
-        if (INVALID_THREADID == socketTID) {
-            cerr << "Thread creation failed" << endl;
-            return 1; // return 1 - error
-        }
-    } else {
-        cerr << "Not using Socket, to enable add flag -s 1 after your pintool" << endl;
-        setUpNextIteration();
+    if (INVALID_THREADID == socketTID) {
+        cerr << "Thread creation failed" << endl;
+        return 1; // return 1 - error
     }
 
     // Register Instruction to be called to instrument instructions
