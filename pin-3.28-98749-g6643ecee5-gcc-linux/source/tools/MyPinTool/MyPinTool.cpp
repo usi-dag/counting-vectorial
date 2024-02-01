@@ -29,8 +29,7 @@ atomic<UINT64> iterationNumber = 0;
 
 void initMap() {
     std::ifstream inputFile("vectorialInstructions.txt");
-    std::vector<std::string> lines;
-    std::string line;
+    string line;
 
     if (inputFile.is_open()) {
         while (getline(inputFile, line)) {
@@ -38,8 +37,8 @@ void initMap() {
         }
         inputFile.close();
     } else {
-        std::cerr << "Unable to open vectorialInstructions.txt" << std::endl;
-        return; // Exit with an error code
+        cerr << "Unable to open vectorialInstructions.txt" << endl;
+        exit(1); // Exit with an error code
     }
 }
 
