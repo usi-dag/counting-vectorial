@@ -13,7 +13,7 @@ For simplicity, both JVBench and pin are part of the repo.
 In order to instrument every iteration of the JVBench benchmark, the implementation of a JVBench plugin was needed. This plugin, through the use of a Socket, tells the PinTool when an iteration starts and ends.
 
 ## Instructions being instrumented
-All vectorial instructions of the type SSE/SSE2/SSE3/SSSE3/SSE4.1/SSE4.2/AVX are being instrumented. A list of all their mnemonics can be found in the file 'vectorialInstructions.txt'. Instructions to instrument can be added or removed from this file.
+All vectorial instructions of the type SSE/SSE2/SSE3/SSSE3/SSE4.1/SSE4.2/AVX are being instrumented. A list of all their mnemonics can be found in the file 'x86_vectorial_instructions.txt'. Instructions to instrument can be added or removed from this file.
 
 
 ### Using the PinTool with JVBench

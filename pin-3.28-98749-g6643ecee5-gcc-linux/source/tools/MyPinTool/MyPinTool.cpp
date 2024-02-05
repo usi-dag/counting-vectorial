@@ -28,7 +28,7 @@ unordered_map<string, atomic<UINT64>> instructionsCounters;
 atomic<UINT64> iterationNumber = 0;
 
 void initMap() {
-    std::ifstream inputFile("vectorialInstructions.txt");
+    std::ifstream inputFile("x86_vectorial_instructions.txt");
     string line;
 
     if (inputFile.is_open()) {
@@ -37,7 +37,7 @@ void initMap() {
         }
         inputFile.close();
     } else {
-        cerr << "Unable to open vectorialInstructions.txt" << endl;
+        cerr << "Unable to open x86_vectorial_instructions.txt" << endl;
         exit(1); // Exit with an error code
     }
 }
