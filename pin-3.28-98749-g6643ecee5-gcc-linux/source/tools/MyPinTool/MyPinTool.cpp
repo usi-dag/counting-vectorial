@@ -24,6 +24,7 @@ using std::unordered_map;
 using std::pair;
 
 unordered_map<string, atomic<UINT64>> instructionsCounters;
+atomic<UINT64> totalIterationInstructions = 0;  // Counter for the total number of (any) instruction
 
 atomic<UINT64> iterationNumber = 0;
 
@@ -53,6 +54,8 @@ void setUpNextIteration() {
     // Set all the atomic counters to 0
     for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
         itr->second = 0;
+
+    totalIterationInstructions = 0;
 }
 
 // Called once "beforeOperationTearDown" is called by the Java Plugin
@@ -75,7 +78,8 @@ void finalizeIteration(string benchmarkName) {
             return;
         }
         // Create header
-        atomicCounters << "Iteration";
+        atomicCounters << "Iteration,";
+        atomicCounters << "Total Number of (any) instructions";
         for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
             atomicCounters << "," << itr->first;
             
@@ -87,7 +91,8 @@ void finalizeIteration(string benchmarkName) {
         cerr << "Unable to open file for writing!" << endl;
         return;
     }
-    atomicCounters << itr;
+    atomicCounters << itr;  // Iteration number
+    atomicCounters << "," << totalIterationInstructions.load();
     for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
         atomicCounters << "," << itr->second.load();
 
@@ -184,6 +189,7 @@ VOID Instruction(INS ins, VOID *v) {
 
     auto insPair = instructionsCounters.find(INS_Mnemonic(ins));    // returns iterator to this element, or end if not found
 
+    // Incremenent the counter for this specific instruction (vectorial instruction)
     if (insPair != instructionsCounters.end()) {
         
         atomic<UINT64> *counter = &(insPair->second);
@@ -191,6 +197,10 @@ VOID Instruction(INS ins, VOID *v) {
         INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, counter, IARG_END);
 
     }
+
+    // Increment the total counter for this iteration
+    // atomic<UINT64> *total = &totalIterationInstructions;
+    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, &totalIterationInstructions, IARG_END);
 }
 
 INT32 Usage() {

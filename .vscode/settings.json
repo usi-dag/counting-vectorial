@@ -87,5 +87,6 @@
         "cfenv": "cpp",
         "cinttypes": "cpp",
         "*.ph": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }
