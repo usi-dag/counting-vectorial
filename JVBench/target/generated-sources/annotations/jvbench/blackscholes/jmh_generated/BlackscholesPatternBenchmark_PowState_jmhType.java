@@ -1,0 +1,4 @@
+package jvbench.blackscholes.jmh_generated;
+public class BlackscholesPatternBenchmark_PowState_jmhType extends BlackscholesPatternBenchmark_PowState_jmhType_B3 {
+}
+

@@ -1,0 +1,4 @@
+package jvbench.swaptions.jmh_generated;
+public class SwaptionsPatternBenchmark_PowState_jmhType extends SwaptionsPatternBenchmark_PowState_jmhType_B3 {
+}
+

@@ -1,0 +1,4 @@
+package jvbench.particlefilter.jmh_generated;
+public class ParticlefilterPatternBenchmark_IndexInRangeState_jmhType extends ParticlefilterPatternBenchmark_IndexInRangeState_jmhType_B3 {
+}
+
