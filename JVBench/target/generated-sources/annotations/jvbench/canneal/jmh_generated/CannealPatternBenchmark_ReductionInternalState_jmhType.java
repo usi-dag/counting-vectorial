@@ -1,0 +1,4 @@
+package jvbench.canneal.jmh_generated;
+public class CannealPatternBenchmark_ReductionInternalState_jmhType extends CannealPatternBenchmark_ReductionInternalState_jmhType_B3 {
+}
+
