@@ -61,12 +61,6 @@ void setUpNextIteration() {
 // Called once "beforeOperationTearDown" is called by the Java Plugin
 void finalizeIteration(string benchmarkName) {
 
-    // Parse the benchmark name from "jvbench.axpy.AxpyBenchmark.autoVec"
-    // to "Axpy"
-    benchmarkName = benchmarkName.substr(benchmarkName.find_first_of('.') + 1);
-    benchmarkName = benchmarkName.substr(benchmarkName.find_first_of('.') + 1);
-    benchmarkName = benchmarkName.substr(0, benchmarkName.find("Benchmark"));
-
     string fileName = "results/" + benchmarkName + "_instructionsCount.csv";
 
     int itr = iterationNumber.load();
