@@ -4,6 +4,8 @@
 
 #include <atomic>
 #include <unordered_map>
+#include <set>
+
 
 // Socket
 #include <cstring>
@@ -22,11 +24,14 @@ using std::string;
 
 using std::unordered_map;
 using std::pair;
+using std::set;
 
 unordered_map<string, atomic<UINT64>> instructionsCounters;
 atomic<UINT64> totalIterationInstructions = 0;  // Counter for the total number of (any) instruction
 
 atomic<UINT64> iterationNumber = 0;
+
+set<string> benchmarkRun; // Keeps track of which benchmarks have been run
 
 void initMap() {
     std::ifstream inputFile("x86_vectorial_instructions.txt");
@@ -60,6 +65,10 @@ void setUpNextIteration() {
 
 // Called once "beforeOperationTearDown" is called by the Java Plugin
 void finalizeIteration(string benchmarkName) {
+
+    if (benchmarkRun.insert(benchmarkName).second) { // element was added - first time we see this benchmark -> reset iteration counter and create new file
+        iterationNumber = 0;
+    }
 
     string fileName = "results/" + benchmarkName + "_instructionsCount.csv";
 
