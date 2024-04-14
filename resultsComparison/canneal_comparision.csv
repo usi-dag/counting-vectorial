@@ -1,0 +1,2 @@
+Total Number of (any) instructions avg explicitVec,Ratio vectorial instructions avg explicitVec,Total Number of (any) instructions avg autoVec,Ratio vectorial instructions avg autoVec,Total Number of (any) instructions avg serial,Ratio vectorial instructions avg serial,Total Number of (any) instructions avg fullVec,Ratio vectorial instructions avg fullVec
+12078639.39,0.01385445149940833,5228594.54,0.014193243907482486,891077.4,0.020038659945495352,595367.42,0.01861034148527054
