@@ -27,7 +27,6 @@ using std::pair;
 using std::set;
 
 unordered_map<string, atomic<UINT64>> instructionsCounters;
-atomic<UINT64> totalIterationInstructions = 0;  // Counter for the total number of (any) instruction
 
 atomic<UINT64> iterationNumber = 0;
 
@@ -59,8 +58,6 @@ void setUpNextIteration() {
     // Set all the atomic counters to 0
     for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
         itr->second = 0;
-
-    totalIterationInstructions = 0;
 }
 
 // Called once "beforeOperationTearDown" is called by the Java Plugin
@@ -70,7 +67,7 @@ void finalizeIteration(string benchmarkName) {
         iterationNumber = 0;
     }
 
-    string fileName = "results/" + benchmarkName + "_instructionsCount.csv";
+    string fileName = "results_vectorial_instructions/" + benchmarkName + "_instructionsCount.csv";
 
     int itr = iterationNumber.load();
     // Initialize the output file
@@ -82,7 +79,6 @@ void finalizeIteration(string benchmarkName) {
         }
         // Create header
         atomicCounters << "Iteration,";
-        atomicCounters << "Total Number of (any) instructions";
         for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
             atomicCounters << "," << itr->first;
             
@@ -95,7 +91,6 @@ void finalizeIteration(string benchmarkName) {
         return;
     }
     atomicCounters << itr;  // Iteration number
-    atomicCounters << "," << totalIterationInstructions.load();
     for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
         atomicCounters << "," << itr->second.load();
 
@@ -123,6 +118,7 @@ void handle_client(int client_socket) {
         string strBuffer(buffer);
         string iterationMode = strBuffer.substr(0, 1);
         string benchmarkName = strBuffer.substr(4);
+        benchmarkName.erase(benchmarkName.find_last_not_of("\n") + 1); // Remove trailing \n
 
         // Call the corresponding method depending if we are at the start of end of an iteration
         string response;
@@ -201,9 +197,6 @@ VOID Instruction(INS ins, VOID *v) {
 
     }
 
-    // Increment the total counter for this iteration
-    // atomic<UINT64> *total = &totalIterationInstructions;
-    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, &totalIterationInstructions, IARG_END);
 }
 
 INT32 Usage() {

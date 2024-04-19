@@ -13,7 +13,7 @@
 ALL_TEST_DIRS :=   AlignChk  AttachDetach Buffer ChildProcess  Cpp11Tests CrossIa32Intel64  Debugger	 \
                  DebugInfo DebugTrace GracefulExit I18N IArg ImageTests InlinedFuncsOpt Insmix InstLibExamples           \
                  InstructionTests InstrumentationOrderAndVersion  LinuxTests  ManualExamples \
-                  Memory MemTrace MemTranslate Mix Mmx MyPinTool NonInlinedFuncsOpt Probes Regvalue Replay     \
+                  Memory MemTrace MemTranslate Mix Mmx VectorialInstructionsCounter TotalInstructionsCounter NonInlinedFuncsOpt Probes Regvalue Replay     \
                  RtnTests SegTrace SegmentsVirtualization SignalTests SimpleExamples Smc SyncTests SyscallsEmulation     \
                  Tests ToolUnitTests  
 

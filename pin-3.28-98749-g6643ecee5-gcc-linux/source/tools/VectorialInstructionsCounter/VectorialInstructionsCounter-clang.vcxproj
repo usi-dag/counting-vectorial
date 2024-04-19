@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{639EF517-FCFC-408E-9500-71F0DC0458DB}</ProjectGuid>
-    <RootNamespace>MyPinTool</RootNamespace>
+    <RootNamespace>VectorialInstructionsCounter</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -255,7 +255,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MyPinTool.cpp" />
+    <ClCompile Include="VectorialInstructionsCounter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README" />
