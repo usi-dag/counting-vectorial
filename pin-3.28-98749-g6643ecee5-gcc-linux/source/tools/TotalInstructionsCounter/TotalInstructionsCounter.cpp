@@ -3,9 +3,8 @@
 #include <iostream>
 
 #include <atomic>
-#include <unordered_map>
 #include <set>
-
+#include <filesystem>
 
 // Socket
 #include <cstring>
@@ -22,7 +21,6 @@ using std::ios;
 using std::ofstream;
 using std::string;
 
-using std::unordered_map;
 using std::pair;
 using std::set;
 
@@ -44,35 +42,41 @@ void setUpNextIteration() {
 
 // Called once "beforeOperationTearDown" is called by the Java Plugin
 void finalizeIteration(string benchmarkName) {
+    static std::set<std::string> benchmarkRun;
 
     if (benchmarkRun.insert(benchmarkName).second) { // element was added - first time we see this benchmark -> reset iteration counter and create new file
         iterationNumber = 0;
     }
 
-    string fileName = "results_total_instructions/" + benchmarkName + "_instructionsCount.csv";
+    std::string directory = "results_total_instructions";
+    std::string fileName = directory + "/" + benchmarkName + "_instructionsCount.csv";
 
     int itr = iterationNumber.load();
     // Initialize the output file
     if (itr == 0) {
-        ofstream atomicCounters(fileName);
+        // Check if the directory exists and create it if it doesn't
+        if (!std::filesystem::exists(directory)) {
+            std::filesystem::create_directory(directory);
+        }
+        std::ofstream atomicCounters(fileName);
         if (!atomicCounters) {
-            cerr << "Unable to open file for writing!" << endl;
+            std::cerr << "Unable to open file for writing!" << std::endl;
             return;
         }
         // Create header
         atomicCounters << "Iteration,";
         atomicCounters << "Total Number of (any) instructions";
-        atomicCounters << endl;
+        atomicCounters << std::endl;
     }
     
-    ofstream atomicCounters(fileName, ios::app);
+    std::ofstream atomicCounters(fileName, std::ios::app);
     if (!atomicCounters) {
-        cerr << "Unable to open file for writing!" << endl;
+        std::cerr << "Unable to open file for writing!" << std::endl;
         return;
     }
     atomicCounters << itr;  // Iteration number
     atomicCounters << "," << totalIterationInstructions.load();
-    atomicCounters << endl;
+    atomicCounters << std::endl;
     atomicCounters.close();
 
     iterationNumber.fetch_add(1);

@@ -3,7 +3,7 @@
 To instrument the benchmark "AxpyBenchmark", run the following command inside ./counting-vectorial.
 
 ```
-$ pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/MyPinTool/obj-intel64/MyPinTool.so -- java -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "AxpyBenchmark"
+$ pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/VectorialInstructionsCounter/obj-intel64/VectorialInstructionsCounter.so -- java -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "AxpyBenchmark"
 ```
 
 
@@ -19,18 +19,18 @@ All vectorial instructions of the type SSE/SSE2/SSE3/SSSE3/SSE4.1/SSE4.2/AVX are
 ### Using the PinTool with JVBench
 To execute the Tool use:
 ```shell
-$ pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/MyPinTool/obj-intel64/MyPinTool.so -- java -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "<Benchmark name>"
+$ pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/VectorialInstructionsCounter/obj-intel64/VectorialInstructionsCounter.so -- java -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "<Benchmark name>"
 ```
 
 For example, to instrument each iteration of the AxpyBencmark we'd run:
 ```shell
-$ pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/MyPinTool/obj-intel64/MyPinTool.so -- java -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "AxpyBenchmark"
+$ pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/VectorialInstructionsCounter/obj-intel64/VectorialInstructionsCounter.so -- java -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "AxpyBenchmark"
 ```
 
 
 ### Modifying the PinTool
-The PinTool's code can be found at '/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/MyPinTool/MyPinTool.cpp'.
-To recompile the code, one needs to be in the MyPinTool directory and run:
+The PinTool's code can be found at '/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/VectorialInstructionsCounter/VectorialInstructionsCounter.cpp'.
+To recompile the code, one needs to be in the VectorialInstructionsCounter directory and run:
 ```shell
 $ make all target=intel64
 ```

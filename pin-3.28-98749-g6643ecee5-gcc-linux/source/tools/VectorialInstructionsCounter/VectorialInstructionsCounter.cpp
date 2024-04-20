@@ -5,7 +5,7 @@
 #include <atomic>
 #include <unordered_map>
 #include <set>
-
+#include <filesystem>
 
 // Socket
 #include <cstring>
@@ -67,11 +67,16 @@ void finalizeIteration(string benchmarkName) {
         iterationNumber = 0;
     }
 
-    string fileName = "results_vectorial_instructions/" + benchmarkName + "_instructionsCount.csv";
+    std::string directory = "results_vectorial_instructions";
+    std::string fileName = directory + "/" + benchmarkName + "_instructionsCount.csv";
 
     int itr = iterationNumber.load();
     // Initialize the output file
     if (itr == 0) {
+        // Check if the directory exists and create it if it doesn't
+        if (!std::filesystem::exists(directory)) {
+            std::filesystem::create_directory(directory);
+        }
         ofstream atomicCounters(fileName);
         if (!atomicCounters) {
             cerr << "Unable to open file for writing!" << endl;
