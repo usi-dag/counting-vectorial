@@ -83,7 +83,7 @@ void finalizeIteration(string benchmarkName) {
             return;
         }
         // Create header
-        atomicCounters << "Iteration,";
+        atomicCounters << "Iteration";
         for (auto itr = instructionsCounters.begin(); itr != instructionsCounters.end(); itr++)
             atomicCounters << "," << itr->first;
             
