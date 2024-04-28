@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: jvbench.lavaMDFma.LavaMDTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s - in jvbench.lavaMDFma.LavaMDTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s - in jvbench.lavaMDFma.LavaMDTest

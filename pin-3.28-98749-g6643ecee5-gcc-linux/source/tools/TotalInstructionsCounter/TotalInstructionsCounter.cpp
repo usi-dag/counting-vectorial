@@ -75,9 +75,10 @@ void finalizeIteration(const std::string& benchmarkName) {
         iterationNumber = 0;
     }
 
-    std::string pid = std::to_string(getpid());
+    // std::string pid = std::to_string(getpid());
     std::string directory = "results_total_instructions";
-    std::string fileName = directory + "/" + benchmarkName + "_instructionsCount_" + pid + ".csv";
+    // std::string fileName = directory + "/" + benchmarkName + "_instructionsCount_" + pid + ".csv";
+    std::string fileName = directory + "/" + benchmarkName + "_instructionsCount.csv";
 
     int itr = iterationNumber.load();
     // Initialize the output file
@@ -141,7 +142,7 @@ void handle_client(int client_socket) {
 }
 
 VOID initSocket(void *nothing) {
-    cout << "Initializing Socket" << endl;
+    // cout << "Initializing Socket" << endl;
     int server_fd, client_socket;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
@@ -157,7 +158,7 @@ VOID initSocket(void *nothing) {
     address.sin_port = htons(PORT);
 
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
-        perror("Bind failed, please wait a minute and try again");
+        // perror("Bind failed, please wait a minute and try again");
         return;
     }
 
@@ -179,7 +180,7 @@ VOID initSocket(void *nothing) {
 }
 
 INT32 Usage() {
-    cerr << "This tool counts the number of cmpxchg instructions executed" << endl;
+    cerr << "This tool counts the total number of instructions executed" << endl;
     cerr << endl << KNOB_BASE::StringKnobSummary() << endl;
     return -1;
 }
@@ -193,13 +194,9 @@ INT32 Usage() {
 //     TRACE_InsertCall(trace, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, totalIterationInstructions, IARG_UINT32, numInstructions, IARG_END);
 // }
 
-// Pin calls this function every time a new basic block is encountered
-// It inserts a call to docount
-VOID Trace(TRACE trace, VOID* v)
-{
+VOID Trace(TRACE trace, VOID* v) {
     // Visit every basic block  in the trace
-    for (BBL bbl = TRACE_BblHead(trace); BBL_Valid(bbl); bbl = BBL_Next(bbl))
-    {
+    for (BBL bbl = TRACE_BblHead(trace); BBL_Valid(bbl); bbl = BBL_Next(bbl)) {
         // Insert a call to totalIterationInstructions before every bbl, passing the number of instructions
         BBL_InsertCall(bbl, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, totalIterationInstructions, IARG_UINT32, BBL_NumIns(bbl), IARG_END);
     }
@@ -209,17 +206,14 @@ int main(int argc, char *argv[]) {
     if (PIN_Init(argc, argv))
         return Usage();
 
+    setupSharedMemory();
+
     THREADID socketTID = PIN_SpawnInternalThread(initSocket, nullptr, 0, nullptr);
     if (INVALID_THREADID == socketTID) {
         cerr << "Thread creation failed" << endl;
         return 1;
     }
 
-    setupSharedMemory();
-
-    cout << getpid() << ": " << *totalIterationInstructions << endl;
-
-    // Use TRACE_AddInstrumentFunction to instrument basic blocks
     TRACE_AddInstrumentFunction(Trace, 0);
 
     PIN_StartProgram();
