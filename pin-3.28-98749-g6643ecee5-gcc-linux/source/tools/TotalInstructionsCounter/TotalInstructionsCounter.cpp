@@ -60,8 +60,8 @@ void setupSharedMemory() {
 }
 
 
-void incrementInstructionCount(atomic<UINT64> *counter) {
-    counter->fetch_add(1, std::memory_order_relaxed);
+void incrementInstructionCount(atomic<UINT64> *counter, UINT32 numOfInstructions) {
+    counter->fetch_add(numOfInstructions, std::memory_order_relaxed);
 }
 
 void setUpNextIteration() {
@@ -178,15 +178,31 @@ VOID initSocket(void *nothing) {
     close(server_fd);
 }
 
-VOID Instruction(INS ins, VOID *v) {
-    // Pass the pointer directly, not the address of the pointer
-    INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, totalIterationInstructions, IARG_END);
-}
-
 INT32 Usage() {
     cerr << "This tool counts the number of cmpxchg instructions executed" << endl;
     cerr << endl << KNOB_BASE::StringKnobSummary() << endl;
     return -1;
+}
+
+
+// VOID Trace(TRACE trace, VOID *v) {
+//     // Get the number of instructions in this basic block
+//     UINT64 numInstructions = TRACE_NumIns(trace);
+
+//     // Insert a call at the beginning of the basic block to increment the instruction count
+//     TRACE_InsertCall(trace, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, totalIterationInstructions, IARG_UINT32, numInstructions, IARG_END);
+// }
+
+// Pin calls this function every time a new basic block is encountered
+// It inserts a call to docount
+VOID Trace(TRACE trace, VOID* v)
+{
+    // Visit every basic block  in the trace
+    for (BBL bbl = TRACE_BblHead(trace); BBL_Valid(bbl); bbl = BBL_Next(bbl))
+    {
+        // Insert a call to totalIterationInstructions before every bbl, passing the number of instructions
+        BBL_InsertCall(bbl, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, totalIterationInstructions, IARG_UINT32, BBL_NumIns(bbl), IARG_END);
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -203,7 +219,8 @@ int main(int argc, char *argv[]) {
 
     cout << getpid() << ": " << *totalIterationInstructions << endl;
 
-    INS_AddInstrumentFunction(Instruction, 0);
+    // Use TRACE_AddInstrumentFunction to instrument basic blocks
+    TRACE_AddInstrumentFunction(Trace, 0);
 
     PIN_StartProgram();
 
