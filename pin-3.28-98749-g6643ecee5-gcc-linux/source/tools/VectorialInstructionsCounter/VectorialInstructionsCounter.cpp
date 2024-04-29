@@ -248,41 +248,42 @@ VOID Instruction(INS ins, VOID *v) {
 
 // Pin calls this function every time a new basic block is encountered
 // It inserts a call to docount
-// VOID Trace(TRACE trace, VOID* v) {
+VOID Trace(TRACE trace, VOID* v) {
 
-//     // Mapping: <Mnemonic, (First occurence pointer, counter)>
-//     unordered_map<string, pair<INS, UINT64>> bbl_counters;
+    // Mapping: <Mnemonic, (First occurence pointer, counter)>
+    unordered_map<string, UINT64> bbl_counters;
 
+    // Visit every basic block  in the trace
+    for (BBL bbl = TRACE_BblHead(trace); BBL_Valid(bbl); bbl = BBL_Next(bbl)) {
+        // Forward pass over all instructions in bbl
+        for(INS ins = BBL_InsHead(bbl); INS_Valid(ins); ins = INS_Next(ins)) {
+            string mnemonic = INS_Mnemonic(ins);
+            auto insPair = instructionsCounters.find(mnemonic);    // returns iterator to this element, or end if not found
 
-//     // Visit every basic block  in the trace
-//     for (BBL bbl = TRACE_BblHead(trace); BBL_Valid(bbl); bbl = BBL_Next(bbl)) {
-//         // Forward pass over all instructions in bbl
-//         for(INS ins = BBL_InsHead(bbl); INS_Valid(ins); ins = INS_Next(ins)) {
-//             string mnemonic = INS_Mnemonic(ins);
-//             auto insPair = instructionsCounters.find(mnemonic);    // returns iterator to this element, or end if not found
-
-//             if (insPair != instructionsCounters.end()) {
-//                 auto pair = bbl_counters.find(mnemonic);
-//                 if(pair == bbl_counters.end()) {
-//                     bbl_counters[mnemonic] = std::make_pair(ins, 1);
-//                 } else {
-//                     bbl_counters[mnemonic].second++;
-//                 }
-//             }
-//         }
-//     }
-
-//     for (auto itr = bbl_counters.begin(); itr != bbl_counters.end(); itr++) {
-//         INS ins = itr->second.first;
-//         string mnemomic = INS_Mnemonic(ins);
-//         auto insPair = instructionsCounters.find(mnemomic);
-//         atomic<UINT64>* counter_pointer = insPair->second;
-//         UINT64 increment = itr->second.second;
+            if (insPair != instructionsCounters.end()) {
+                auto pair = bbl_counters.find(mnemonic);
+                if(pair == bbl_counters.end()) {
+                    bbl_counters[mnemonic] = 1;
+                } else {
+                    pair->second++;
+                }
+            }
+        }
         
-//         INS_InsertCall(ins, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, counter_pointer, IARG_UINT32, increment, IARG_END);
-//     }
+        for (auto itr = bbl_counters.begin(); itr != bbl_counters.end(); itr++) {
+            string mnemonic = itr->first;
+            auto insPair = instructionsCounters.find(mnemonic);
+            atomic<UINT64>* counter_pointer = insPair->second;
+            UINT64 increment = itr->second;
+            
+            BBL_InsertCall(bbl, IPOINT_BEFORE, (AFUNPTR)incrementInstructionCount, IARG_PTR, counter_pointer, IARG_UINT32, increment, IARG_END);
 
-// }
+            itr->second = 0;
+        }
+    }
+
+
+}
 
 int main(int argc, char *argv[]) {
     if (PIN_Init(argc, argv))
@@ -297,7 +298,8 @@ int main(int argc, char *argv[]) {
     initMap();
 
     // Use TRACE_AddInstrumentFunction to instrument basic blocks
-    INS_AddInstrumentFunction(Instruction, 0);
+    // INS_AddInstrumentFunction(Instruction, 0);
+    TRACE_AddInstrumentFunction(Trace, 0);
 
 
     PIN_StartProgram();
