@@ -202,6 +202,18 @@ VOID Trace(TRACE trace, VOID* v) {
     }
 }
 
+VOID Cleanup(VOID* v) {
+    if (totalIterationInstructions != nullptr) {
+        munmap(totalIterationInstructions, sizeof(UINT64));
+        totalIterationInstructions = nullptr;
+    }
+
+    std::string filename = "/tmp/shared_counter";
+    if (std::filesystem::exists(filename)) {
+        std::filesystem::remove(filename);
+    }
+}
+
 int main(int argc, char *argv[]) {
     if (PIN_Init(argc, argv))
         return Usage();
@@ -215,6 +227,9 @@ int main(int argc, char *argv[]) {
     }
 
     TRACE_AddInstrumentFunction(Trace, 0);
+
+    PIN_AddFiniFunction(Cleanup, 0);
+
 
     PIN_StartProgram();
 

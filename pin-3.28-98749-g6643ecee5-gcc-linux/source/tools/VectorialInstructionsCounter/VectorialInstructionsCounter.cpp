@@ -285,6 +285,29 @@ VOID Trace(TRACE trace, VOID* v) {
 
 }
 
+VOID Cleanup(VOID* v) {
+    // Iterate over all instruction counters and unmap the memory
+    for (auto& counter : instructionsCounters) {
+        if (counter.second != nullptr) {
+            munmap(counter.second, sizeof(UINT64));
+        }
+
+        std::string cleanedInstruction;
+        for (char c : counter.first) {
+            if (c == '/') {
+                cleanedInstruction += '-';
+            } else {
+                cleanedInstruction += c;
+            }
+        }
+        std::string filename = "/tmp/shared_counter_" + cleanedInstruction;
+
+        if (std::filesystem::exists(filename)) {
+            std::filesystem::remove(filename);
+        }
+    }
+}
+
 int main(int argc, char *argv[]) {
     if (PIN_Init(argc, argv))
         return Usage();
@@ -301,6 +324,7 @@ int main(int argc, char *argv[]) {
     // INS_AddInstrumentFunction(Instruction, 0);
     TRACE_AddInstrumentFunction(Trace, 0);
 
+    PIN_AddFiniFunction(Cleanup, 0);
 
     PIN_StartProgram();
 
