@@ -202,7 +202,7 @@ VOID Trace(TRACE trace, VOID* v) {
     }
 }
 
-VOID Cleanup(VOID* v) {
+VOID Cleanup(INT32 code, VOID* v) {
     if (totalIterationInstructions != nullptr) {
         munmap(totalIterationInstructions, sizeof(UINT64));
         totalIterationInstructions = nullptr;

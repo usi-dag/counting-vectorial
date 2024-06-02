@@ -285,7 +285,7 @@ VOID Trace(TRACE trace, VOID* v) {
 
 }
 
-VOID Cleanup(VOID* v) {
+VOID Cleanup(INT32 code, VOID* v) {
     // Iterate over all instruction counters and unmap the memory
     for (auto& counter : instructionsCounters) {
         if (counter.second != nullptr) {
